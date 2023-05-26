@@ -1,0 +1,68 @@
+.searchItem__icon {
+    --search-height: 40px;
+    flex: 1;
+    min-width: 20vw;
+    height: var(--search-height);
+    position: relative;
+
+    input {
+        font-size: 1.2rem;
+        background-color: white;
+        line-height: 1.6rem;
+        height: 100%;
+        font-weight: 400;
+        outline: none;
+        border: 1.5px solid gray;
+        border-top-left-radius: 18px;
+        border-bottom-left-radius: 18px;
+        border-right: none;
+    }
+
+    input:not(:placeholder-shown) ~ .search-btn {
+        color: rgba(22, 24, 35, 0.7);
+    }
+
+    .search-btn {
+        font-size: 1.2rem !important;
+        border-top-right-radius: 18px;
+        border-bottom-right-radius: 18px;
+        height: var(--search-height);
+        font-size: 1.8rem;
+        background: white;
+        color: rgba(22, 24, 35, 0.34);
+        border: 1.5px solid gray;
+        border-left: none;
+
+        &:hover {
+            cursor: pointer;
+            background-color: var(--main-color);
+            color: white !important;
+        }
+
+        &:active {
+            background-color: var(--main-color);
+            color: white;
+        }
+    }
+}
+// .anticon svg {
+//     margin-bottom: 3px;
+// }
+
+// .ant-input-search
+//     > .ant-input-group
+//     > .ant-input-group-addon:last-child
+//     .ant-input-search-button:not(.ant-btn-primary):hover {
+//     color: var(--main-color);
+//     border-color: var(--main-color) !important;
+// }
+
+// .ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover {
+//     color: var(--main-color);
+//     border-color: var(--main-color) !important;
+// }
+
+// .ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):active {
+//     color: var(--main-color);
+//     border-color: var(--main-color) !important;
+// }

@@ -1,0 +1,25 @@
+.carousel__container {
+    height: 70vh;
+    position: relative;
+
+    .carousel__search {
+        width: 100vh;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+
+        .searchItem__icon {
+        }
+
+        input {
+            box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 12px;
+            height: var(--search-height);
+        }
+
+		button {
+			margin-left: -1px;
+			box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 12px;
+		}
+    }
+}
