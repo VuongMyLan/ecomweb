@@ -1,9 +1,87 @@
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from 'components/button/Button';
-import React from 'react';
+import { CartContext } from 'context/cartContext/cartContext';
+import React, { useContext } from 'react';
 
 const ProductItem = ({ productData }) => {
+    const { cart, dispatch } = useContext(CartContext);
+    console.log('cart', cart);
+    const renderAddToCart = () => {
+        const find = cart?.find(
+            (item) => item.productData.id === productData.id
+        );
+        if (find) {
+            return (
+                <>
+                    <span className='bg-slate-200 flex justify-center items-center p-3 rounded-l-lg productItem__button--minus'>
+                        <FontAwesomeIcon
+                            icon={faMinus}
+                            onClick={() =>
+                                dispatch({
+                                    type: 'REMOVE_FROM_CART',
+                                    payload: {
+                                        productData,
+                                        quantity: 1,
+                                    },
+                                })
+                            }
+                        />
+                    </span>
+                    <Button className='inline-block productItem__button--quantity p-2  px-4 flex-1'>
+                        <span className='flex-1'>{find.quantity}</span>
+                    </Button>
+                    <span className='bg-slate-200 flex justify-center items-center p-3 rounded-r-lg productItem__button--plus'>
+                        <FontAwesomeIcon
+                            icon={faPlus}
+                            onClick={() =>
+                                dispatch({
+                                    type: 'ADD_TO_CART',
+                                    payload: {
+                                        productData,
+                                        quantity: 1,
+                                    },
+                                })
+                            }
+                        />
+                    </span>
+                </>
+            );
+        } else {
+            return (
+                <>
+                    <Button
+                        className='inline-block productItem__button p-2 rounded-l-lg px-4 flex-1'
+                        onClick={() =>
+                            dispatch({
+                                type: 'ADD_TO_CART',
+                                payload: {
+                                    productData,
+                                    quantity: 1,
+                                },
+                            })
+                        }
+                    >
+                        <span className='flex-1'>Add to Cart</span>
+                    </Button>
+                    <span className='bg-slate-200 flex justify-center items-center p-3 rounded-r-lg productItem__button__icon'>
+                        <FontAwesomeIcon
+                            icon={faPlus}
+                            onClick={() =>
+                                dispatch({
+                                    type: 'ADD_TO_CART',
+                                    payload: {
+                                        productData,
+                                        quantity: 1,
+                                    },
+                                })
+                            }
+                        />
+                    </span>
+                </>
+            );
+        }
+    };
     return (
         <div className='bg-white rounded-xl productItem__container'>
             <div>
@@ -21,17 +99,12 @@ const ProductItem = ({ productData }) => {
                     </span>
                 </span>
 
-                <p className='pl-6 text-based text-xl font-light'>
+                <p className='pl-6 text-sm text-xl font-light text-slate-500'>
                     {productData.name}
                 </p>
-                <p className='flex justify-center text-based p-2 border-slate-300 m-auto w-10/12 my-5 rounded-lg text-slate-400'>
-                    <Button className='inline-block productItem__button p-2 rounded-l-lg px-4 flex-1'>
-                        <span className='flex-1'>Add to Cart</span>
-                    </Button>
-                    <span className='bg-slate-200 flex justify-center items-center p-3 rounded-r-lg productItem__button__icon'>
-                        <FontAwesomeIcon icon={faPlus} />
-                    </span>
-                </p>
+                <div className='flex justify-center text-based p-2 border-slate-300 m-auto w-10/12 my-5 rounded-lg text-slate-400 productItem__button__container'>
+                    {renderAddToCart()}
+                </div>
                 <p className='text-sm product__percentage'>
                     {productData.sale()}%
                 </p>

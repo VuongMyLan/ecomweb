@@ -11,7 +11,7 @@ const images = {
     mangoes: require('assets/img/Mangoes.jpg'),
     miniPeppers: require('assets/img/MiniPeppers.jpg'),
     peelCarots: require('assets/img/Peeled-Carrots.jpg'),
-	PerformanceMeasure: require('assets/img/pears.jpg'),
+	pears: require('assets/img/pears.jpg'),
 };
 
 export default images;

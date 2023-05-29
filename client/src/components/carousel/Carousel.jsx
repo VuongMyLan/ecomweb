@@ -12,10 +12,10 @@ const Carousel = () => {
                 className='carousel__banner object-cover w-full h-full'
             />
             <div className='carousel__search flex items-center justify-center flex-col'>
-                <span className='text-left text-2xl mb-2 font-semibold'>
+                <span className='text-left text-3xl mb-7 font-semibold'>
                     Groceries Delivered In Your Doorsteps
                 </span>
-				<span className='text-left text-xs mb-3 font-medium'>
+				<span className='text-left text-sm mb-7 font-medium'>
                     Enjoy your healthy and fresh ingredients delivered everyday
                 </span>
                 <SearchItem />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import images from 'assets/img/index';
 import SearchItem from 'components/search/Search';
 import { SubMenuItem } from 'components/submenuItems/SubMenuItem';
@@ -16,9 +16,15 @@ import {
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css'; // optional
 import TippyHeadless from '@tippyjs/react/headless';
+import { CartContext } from 'context/cartContext/cartContext';
 
 const Header = () => {
     const user = true;
+    const { cart } = useContext(CartContext);
+
+    let quantity = cart.reduce((totalSum, curValue) => {
+        return curValue.quantity + totalSum;
+    }, 0);
 
     return (
         <div className='header__container flex items-center justify-around text-stone-700 bg-slate-100 py-1'>
@@ -76,16 +82,21 @@ const Header = () => {
                             </a>
                         </li>
                     </Tippy>
-                    <Tippy content='Cart'>
-                        <li className='link p-2 header__item'>
-                            <a href='/'>
-                                <FontAwesomeIcon
-                                    icon={faCartShopping}
-                                    className='header__icon--cart'
-                                />
-                            </a>
-                        </li>
-                    </Tippy>
+                    <div className='relative'>
+                        <div className='rounded-full bg-red-500 text-slate-50 p-1 w-5 h-5 text-center flex justify-center items-center text-xs font-medium absolute right-0 top-0'>
+                            {quantity}
+                        </div>
+                        <Tippy content='Cart'>
+                            <li className='link p-2 header__item'>
+                                <a href='/'>
+                                    <FontAwesomeIcon
+                                        icon={faCartShopping}
+                                        className='header__icon--cart'
+                                    />
+                                </a>
+                            </li>
+                        </Tippy>
+                    </div>
                     {user ? (
                         <TippyHeadless
                             interactive
