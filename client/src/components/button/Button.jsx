@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 const Button = ({
     to,
     href,
-    leftIcon = true,
-    rightIcon = true,
+    leftIcon = null,
+    rightIcon = null,
     children,
     ...passProps
 }) => {

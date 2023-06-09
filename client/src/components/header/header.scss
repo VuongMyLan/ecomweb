@@ -1,5 +1,6 @@
 .header__container {
     height: var(--header-height);
+    z-index: 999;
     .header__left {
         height: 100%;
     }
@@ -35,5 +36,18 @@
         &:hover {
             color: var(--main-color);
         }
+    }
+}
+
+.header__sm {
+    margin-top: 100px;
+    height: var(--header-height -50px);
+    .header__icon--cartsm {
+        right: -10px;
+    }
+}
+
+@media screen and (min-width: 1028px) {
+    .searchItem__icon {
     }
 }

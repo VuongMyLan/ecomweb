@@ -5,20 +5,20 @@ import SearchItem from 'components/search/Search';
 import './carousel.scss';
 const Carousel = () => {
     return (
-        <div className='carousel__container w-full'>
+        <div className='carousel__container w-full '>
             <Image
                 src={images.carousel1}
                 alt='carousel'
-                className='carousel__banner object-cover w-full h-full'
+                className='carousel__banner object-contain w-full h-full xl:object-cover'
             />
-            <div className='carousel__search flex items-center justify-center flex-col'>
-                <span className='text-left text-3xl mb-7 font-semibold'>
+            <div className='carousel__search flex items-center justify-center flex-col '>
+                <span className='xl:text-3xl xl:mb-7 text-2xl mb-3 font-semibold drop-shadow-2xl text-center sm:text-left'>
                     Groceries Delivered In Your Doorsteps
                 </span>
-				<span className='text-left text-sm mb-7 font-medium'>
+                <span className='text-center text-base mb-7 font-medium shadow-2 p-4'>
                     Enjoy your healthy and fresh ingredients delivered everyday
                 </span>
-                <SearchItem />
+                <SearchItem className='hidden' />
             </div>
         </div>
     );

@@ -2,8 +2,6 @@ import React, { forwardRef, useState } from 'react';
 import './image.scss';
 import images from 'assets/img/index';
 
-console.log(images);
-
 const Image = forwardRef(
     (
         { fallBack: customerFallBack = images.carousel1, alt, src, ...props },

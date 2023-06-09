@@ -47,6 +47,16 @@ const cartReducer = (state, action) => {
                 cart: [...newArr],
             };
         }
+        case 'DELETE_ITEM': {
+            const newstate = state.cart?.filter(
+                (item) => item.productData.id !== id
+            );
+            console.log('newState', newstate);
+            return {
+                ...state,
+                cart: [...newstate],
+            };
+        }
         default:
             return state;
     }

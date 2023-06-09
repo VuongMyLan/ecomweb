@@ -12,3 +12,32 @@
         transform: translateY(0%);
     }
 }
+
+.sidebarWidget {
+    animation: 0.3s ease-in slide forwards;
+}
+
+@keyframes slide {
+    from {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}
+.profileWidget {
+    animation: 0.3s ease-in slideFromRight forwards;
+}
+
+@keyframes slideFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}

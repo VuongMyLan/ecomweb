@@ -1,7 +1,5 @@
 .searchItem__icon {
     --search-height: 40px;
-    flex: 1;
-    min-width: 20vw;
     height: var(--search-height);
     position: relative;
 
@@ -45,24 +43,3 @@
         }
     }
 }
-// .anticon svg {
-//     margin-bottom: 3px;
-// }
-
-// .ant-input-search
-//     > .ant-input-group
-//     > .ant-input-group-addon:last-child
-//     .ant-input-search-button:not(.ant-btn-primary):hover {
-//     color: var(--main-color);
-//     border-color: var(--main-color) !important;
-// }
-
-// .ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover {
-//     color: var(--main-color);
-//     border-color: var(--main-color) !important;
-// }
-
-// .ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):active {
-//     color: var(--main-color);
-//     border-color: var(--main-color) !important;
-// }

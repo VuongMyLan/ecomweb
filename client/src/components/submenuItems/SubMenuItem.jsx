@@ -32,7 +32,7 @@ const subMenuItemData = [
     },
 ];
 
-export const SubMenuItem = () => {
+export const SubMenuItem = ({ handleLogout }) => {
     return (
         <div className='subMenuItem__container text-base font-semibold rounded-lg mt-2 '>
             {/* {subMenuItemData.map((item, index) => (
@@ -49,6 +49,7 @@ export const SubMenuItem = () => {
                     leftIcon={item.icon}
                     className='block py-4 p-5 w-full text-left'
                     to={item.to}
+                    onClick={item.title === 'Log out' ? handleLogout : null}
                 >
                     {item.title}
                 </Button>

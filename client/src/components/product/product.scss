@@ -1,6 +1,6 @@
 .productItem__container {
     position: relative;
-    min-height: 300px;
+
     .productItem__button__container {
         &:hover .productItem__button,
         &:hover .productItem__button__icon {
@@ -43,4 +43,10 @@
         width: auto;
         border-radius: 18px;
     }
+}
+
+@media screen and (max-width: 639px) {
+	.productItem__container{
+		height: auto;
+	}
 }

@@ -4,13 +4,17 @@ import style from './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { CartContextProvider } from 'context/cartContext/cartContext';
+import { AuthContextProvider } from 'context/authContext/AuthContext';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     // <React.StrictMode>
-    <CartContextProvider>
-        <App />
-    </CartContextProvider>
+    <AuthContextProvider>
+        <CartContextProvider>
+            <App />
+        </CartContextProvider>
+    </AuthContextProvider>
     // </React.StrictMode>
 );
 
