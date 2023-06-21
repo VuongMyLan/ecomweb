@@ -30,15 +30,15 @@ const CONSTANT_TEXT = {
     PROFILE__TEXT: {
         myprofile: {
             title: 'My Profile',
-            to: '/myprofile',
+            to: '/profile',
         },
         myorder: {
             title: 'My Order',
-            to: '/myorder',
+            to: '/order',
         },
         mywishlist: {
             title: 'My Wishlist',
-            to: '/mywishlist',
+            to: '/wishlist',
         },
         checkout: {
             title: 'Check out',
@@ -49,6 +49,14 @@ const CONSTANT_TEXT = {
             to: '/logout',
         },
     },
+	STATUS__TEXT: {
+		allorder: "All orders",
+		toPay: "To pay",
+		toShip: "To Ship",
+		toReceive: "To Receive",
+		completed: "Completed",
+		cancelled: "Cancelled"
+	}
 };
 
 export default CONSTANT_TEXT;

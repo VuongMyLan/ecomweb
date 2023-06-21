@@ -7,10 +7,16 @@ import {
     faCloudMeatball,
     faCookieBite,
     faDog,
+    faDumpsterFire,
     faUtensils,
 } from '@fortawesome/free-solid-svg-icons';
 
 export const SidebarData = [
+    {
+        title: 'All Products',
+        path: '',
+        icon: <FontAwesomeIcon icon={faDumpsterFire} />,
+    },
     {
         title: 'Fruits & Vegetables',
         path: '/product',
@@ -40,7 +46,7 @@ export const SidebarData = [
 
         subNav: [
             {
-                title: 'Fresh Fish',
+                title: 'Fish',
                 path: '/reports/freshfish',
                 icon: null,
             },
@@ -52,7 +58,7 @@ export const SidebarData = [
         ],
     },
     {
-        title: 'Snacks',
+        title: 'Snack',
         path: '/product',
         icon: <FontAwesomeIcon icon={faCookieBite} />,
         iconClosed: <FontAwesomeIcon icon={faCaretUp} />,

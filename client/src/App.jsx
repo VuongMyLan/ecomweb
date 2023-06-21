@@ -10,10 +10,12 @@ import { useContext } from 'react';
 import ForgetPassword from 'components/register/ForgetPassword';
 import ResetPassword from 'components/register/ResetPassword';
 import ProfilePage from 'pages/profile/ProfilePage';
+import OrderPage from 'pages/order/OrderPage';
+import OrderDetail from 'components/order/OrderDetail';
 
 function App() {
     const { currentUser } = useContext(AuthContext);
-    console.log('currentUser', currentUser);
+    // console.log('currentUser', currentUser);
     const RequireAuth = ({ children }) => {
         return currentUser ? children : <Navigate to='/login' />;
     };
@@ -60,6 +62,24 @@ function App() {
                     element={
                         <RequireAuth>
                             <ProfilePage />
+                        </RequireAuth>
+                    }
+                />
+                <Route
+                    exact
+                    path='/order'
+                    element={
+                        <RequireAuth>
+                            <OrderPage />
+                        </RequireAuth>
+                    }
+                />
+                <Route
+                    exact
+                    path='/orders/:ordernumber'
+                    element={
+                        <RequireAuth>
+                            <OrderDetail />
                         </RequireAuth>
                     }
                 />

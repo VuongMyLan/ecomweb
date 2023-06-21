@@ -1,6 +1,21 @@
 const cartReducer = (state, action) => {
-    const id = action.payload.productData.id;
+    // console.log('action.payload', action.payload);
+    let id;
+    if (action.type !== 'FETCH_DATA') {
+        id = action.payload.productData.id;
+    }
+    // console.log('state.cart', state.cart);
     switch (action.type) {
+        case 'FETCH_DATA':
+            const newArray = [];
+            Object.values(action.payload)?.forEach((item) =>
+                newArray.push(item)
+            );
+            return {
+                ...state,
+                cart: [...newArray],
+            };
+
         case 'ADD_TO_CART':
             console.log('state', state);
             console.log('action.payload', action.payload);
@@ -14,7 +29,7 @@ const cartReducer = (state, action) => {
                     (item) => item.productData.id === id
                 );
                 if (find) {
-                    state.cart?.map((item) => {
+                    state.cart?.forEach((item) => {
                         if (item.productData.id === id) {
                             item.quantity = item.quantity + 1;
                         }

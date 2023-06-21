@@ -6,7 +6,7 @@ const ProductData = [
         name: 'Apples',
         originalprice: 2.2,
         promotionprice: 2,
-        image: images.Apples,
+        image: 'https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2FApples.jpg?alt=media&token=5af4796c-cc53-4b2d-b929-0a190f29aad1',
         unit: 'kg',
         thumbnailImg: [images.apple1, images.apple2, images.apple3],
         categories: ['Fruits & Vegetables', 'Fruits'],

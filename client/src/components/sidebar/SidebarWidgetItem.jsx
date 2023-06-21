@@ -11,14 +11,14 @@ const SidebarWidgetItem = ({
 }) => {
     const arrayValue = Object.values(itemWidget);
     const renderlistitem = () => {
-        return arrayValue?.map((item) => (
-            <p className='py-3 hover:text-main block'>
+        return arrayValue?.map((item, i) => (
+            <div className='py-3 hover:text-main block' key={i}>
                 {item.title !== 'Log out' ? (
                     <Link to={item.to}>{item.title}</Link>
                 ) : (
                     <p onClick={handleLogout}>{item.title}</p>
                 )}
-            </p>
+            </div>
         ));
     };
 

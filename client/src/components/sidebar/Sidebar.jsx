@@ -4,7 +4,7 @@ import { Menu } from 'antd';
 import { useState } from 'react';
 import { SidebarData } from './SidebarData';
 import SubSidebar from './SubSidebar';
-const Sidebar = ({ className }) => {
+const Sidebar = ({ className, setShowWidget }) => {
     return (
         <div className={`${className}`}>
             {SidebarData.map((item, index) => (
@@ -12,6 +12,7 @@ const Sidebar = ({ className }) => {
                     key={index}
                     item={item}
                     className='subItem__container'
+					setShowWidget={setShowWidget}
                 />
             ))}
         </div>

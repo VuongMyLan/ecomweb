@@ -19,6 +19,8 @@ import {
 import { db, storage } from '../../firebase';
 import Tippy from '@tippyjs/react';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import ProfileHeader from './ProfileHeader';
+import './profile.scss';
 
 const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
 const Profile = ({ className }) => {
@@ -35,6 +37,13 @@ const Profile = ({ className }) => {
     });
     const [img, setImg] = useState();
     const [perc, setPerc] = useState(null);
+
+    // show Sidebar Profile on small device
+    const [showSideBarWidget, setShowSideBarWidget] = useState(false);
+    const renderSideBarWidget = () => {
+        setShowSideBarWidget(true);
+    };
+
     const navigate = useNavigate();
 
     // Validation
@@ -86,7 +95,6 @@ const Profile = ({ className }) => {
     const handleUpload = (e) => {
         setImg(e.target.files[0]);
     };
-
     const uploadFile = () => {
         if (img) {
             const name = new Date().getTime();
@@ -134,7 +142,6 @@ const Profile = ({ className }) => {
         img && uploadFile();
     }, [img]);
 
-    console.log('data', data);
     // Submitform
     const onSubmit = async (values, action) => {
         try {
@@ -153,7 +160,7 @@ const Profile = ({ className }) => {
 
     return (
         <div className={`${className}`}>
-            <div className='profile__img'>
+            <div className='profile__img bg-slate-200 rounded-lg pt-[10px]'>
                 <div className='flex flex-col items-center'>
                     <img
                         src={
@@ -195,7 +202,7 @@ const Profile = ({ className }) => {
                             onSubmit={onSubmit}
                         >
                             {(props) => (
-                                <Form className='my-[30px] w-11/12 m-auto'>
+                                <Form className='my-[30px] w-11/12 m-auto mb-0'>
                                     <Field name='username'>
                                         {({
                                             field, // { name, value, onChange, onBlur }
@@ -234,7 +241,7 @@ const Profile = ({ className }) => {
                                                         type='text'
                                                         disabled={isEdit}
                                                         placeholder='Aurora Lan'
-                                                        className={`outline-none my-2 py-1 border px-2 rounded-md placeholder:text-sm ${
+                                                        className={`outline-none my-2 py-1 border px-2 rounded-md placeholder:text-sm disabled:bg-slate-300${
                                                             meta.touched &&
                                                             meta.error
                                                                 ? 'border border-red-400'
@@ -271,7 +278,7 @@ const Profile = ({ className }) => {
                                                         id='email'
                                                         type='text'
                                                         placeholder='auroralan@gm.com'
-                                                        className={`outline-none my-2 py-1 border px-2 rounded-md placeholder:text-sm ${
+                                                        className={`outline-none my-2 py-1 border px-2 rounded-md placeholder:text-sm disabled:bg-slate-300${
                                                             meta.touched &&
                                                             meta.error
                                                                 ? 'border border-red-400'
@@ -307,7 +314,7 @@ const Profile = ({ className }) => {
                                                     id='password'
                                                     type='password'
                                                     placeholder='Please enter your password'
-                                                    className={`outline-none my-2 py-1 border px-2 rounded-md placeholder:text-sm ${
+                                                    className={`outline-none my-2 py-1 border px-2 rounded-md placeholder:text-sm disabled:bg-slate-300${
                                                         meta.touched &&
                                                         meta.error
                                                             ? 'border border-red-400'
@@ -341,7 +348,7 @@ const Profile = ({ className }) => {
                                                     id='phonenumber'
                                                     type='text'
                                                     placeholder='+84 09xxxxxx'
-                                                    className={`outline-none my-2 py-1 border px-2 rounded-md placeholder:text-sm ${
+                                                    className={`outline-none my-2 py-1 border px-2 rounded-md placeholder:text-sm disabled:bg-slate-300${
                                                         meta.touched &&
                                                         meta.error
                                                             ? 'border border-red-400'
@@ -375,7 +382,7 @@ const Profile = ({ className }) => {
                                                     id='address'
                                                     type='text'
                                                     placeholder='Unit 1708 Corgi Boulevard, LA, USA '
-                                                    className={`outline-none my-2 py-1 border px-2 rounded-md placeholder:text-sm ${
+                                                    className={`outline-none my-2 py-1 border px-2 rounded-md placeholder:text-sm disabled:bg-slate-300${
                                                         meta.touched &&
                                                         meta.error
                                                             ? 'border border-red-400'
@@ -403,7 +410,7 @@ const Profile = ({ className }) => {
                                                     id='confirmPassword'
                                                     type='password'
                                                     placeholder='Please enter your password'
-                                                    className={`outline-none my-2 py-1 border px-2 rounded-md placeholder:text-sm ${
+                                                    className={`outline-none my-2 py-1 border px-2 rounded-md placeholder:text-sm disabled:bg-slate-300${
                                                         meta.touched &&
                                                         meta.error
                                                             ? 'border border-red-400'
@@ -451,6 +458,9 @@ const Profile = ({ className }) => {
                     </div>
                 </div>
             </div>
+            <p className='text-slate-500 text-right mx-4 text-sm m-3 shadow-xl'>
+                © Copyright Aurora Ltd., 2023
+            </p>
         </div>
     );
 };

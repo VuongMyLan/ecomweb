@@ -6,9 +6,19 @@ import React, { useContext, useRef, useState } from 'react';
 import ProductDetail from './ProductDetail';
 import Modal from 'components/modal/Modal';
 import { Link } from 'react-router-dom';
-
+import { AuthContext } from 'context/authContext/AuthContext';
+import { handleAddToCart, handleRemoveFromCart } from 'utils/handleCart';
 const ProductItem = ({ productData }) => {
     const { cart, dispatch } = useContext(CartContext);
+    const { currentUser } = useContext(AuthContext);
+
+    // Sales off Calculation
+    const saleOffs = (originalprice, promotionprice) => {
+        return (
+            ((originalprice - promotionprice) / originalprice) *
+            100
+        ).toFixed(1);
+    };
 
     // render Product Detail
     const renderAddToCart = () => {
@@ -18,36 +28,32 @@ const ProductItem = ({ productData }) => {
         if (find) {
             return (
                 <>
-                    <span className='bg-slate-200 flex justify-center items-center p-3 rounded-l-lg productItem__button--minus'>
-                        <FontAwesomeIcon
-                            icon={faMinus}
-                            onClick={() =>
-                                dispatch({
-                                    type: 'REMOVE_FROM_CART',
-                                    payload: {
-                                        productData,
-                                        quantity: 1,
-                                    },
-                                })
-                            }
-                        />
+                    <span
+                        className='bg-slate-200 flex justify-center items-center p-3 rounded-l-lg productItem__button--minus'
+                        onClick={() => {
+                            handleRemoveFromCart(
+                                productData,
+                                currentUser.uid,
+                                dispatch
+                            );
+                        }}
+                    >
+                        <FontAwesomeIcon icon={faMinus} />
                     </span>
                     <Button className='inline-block productItem__button--quantity p-2 px-4 flex-1 text-xl'>
                         <span className='flex-1'>{find.quantity}</span>
                     </Button>
-                    <span className='bg-slate-200 flex justify-center items-center p-3 rounded-r-lg productItem__button--plus'>
-                        <FontAwesomeIcon
-                            icon={faPlus}
-                            onClick={() =>
-                                dispatch({
-                                    type: 'ADD_TO_CART',
-                                    payload: {
-                                        productData,
-                                        quantity: 1,
-                                    },
-                                })
-                            }
-                        />
+                    <span
+                        className='bg-slate-200 flex justify-center items-center p-3 rounded-r-lg productItem__button--plus'
+                        onClick={() =>
+                            handleAddToCart(
+                                productData,
+                                currentUser.uid,
+                                dispatch
+                            )
+                        }
+                    >
+                        <FontAwesomeIcon icon={faPlus} />
                     </span>
                 </>
             );
@@ -56,31 +62,29 @@ const ProductItem = ({ productData }) => {
                 <>
                     <Button
                         className='inline-block productItem__button p-2 rounded-l-lg px-4 flex-1'
-                        onClick={() =>
-                            dispatch({
-                                type: 'ADD_TO_CART',
-                                payload: {
-                                    productData,
-                                    quantity: 1,
-                                },
-                            })
-                        }
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            handleAddToCart(
+                                productData,
+                                currentUser.uid,
+                                dispatch
+                            );
+                        }}
                     >
                         <span className='flex-1 text-xl'>Add to Cart</span>
                     </Button>
-                    <span className='bg-slate-200 flex justify-center items-center p-3 rounded-r-lg productItem__button__icon'>
-                        <FontAwesomeIcon
-                            icon={faPlus}
-                            onClick={() =>
-                                dispatch({
-                                    type: 'ADD_TO_CART',
-                                    payload: {
-                                        productData,
-                                        quantity: 1,
-                                    },
-                                })
-                            }
-                        />
+                    <span
+                        className='bg-slate-200 flex justify-center items-center p-3 rounded-r-lg productItem__button__icon'
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            handleAddToCart(
+                                productData,
+                                currentUser.uid,
+                                dispatch
+                            );
+                        }}
+                    >
+                        <FontAwesomeIcon icon={faPlus} />
                     </span>
                 </>
             );
@@ -112,18 +116,13 @@ const ProductItem = ({ productData }) => {
                     {renderAddToCart()}
                 </div>
                 <p className='text-sm product__percentage'>
-                    {productData.sale()}%
+                    {saleOffs(
+                        productData.originalprice,
+                        productData.promotionprice
+                    )}
+                    %
                 </p>
             </div>
-            {/* {showDetail && (
-                <div className='fixed top-0 left-0 right-0 bottom-0 z-[51] h-screen overflow-scroll'>
-                    <ProductDetail
-                        productData={productData}
-                        showDetail={showDetail}
-                        setShowDetail={setShowDetail}
-                    />
-                </div>
-            )} */}
         </div>
     );
 };

@@ -8,17 +8,17 @@ const subMenuItemData = [
     {
         icon: null,
         title: 'My Profile',
-        to: '/myprofile',
+        to: '/profile',
     },
     {
         icon: null,
         title: 'My Orders',
-        to: '/myorders',
+        to: '/order',
     },
     {
         icon: null,
         title: 'My WishList',
-        to: '/mywishlist',
+        to: '/wishlist',
     },
     {
         icon: null,

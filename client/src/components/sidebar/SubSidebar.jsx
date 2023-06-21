@@ -1,29 +1,38 @@
 import Button from 'components/button/Button';
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './sidebar.scss';
+import { SearchContext } from 'context/searchContext/SearchContext';
 
-const SubSidebar = ({ item }) => {
+const SubSidebar = ({ item, setShowWidget }) => {
     const [subNavBar, setSubNavBar] = useState(false);
 
     const showNavbar = () => {
         setSubNavBar(!subNavBar);
     };
+    const { searchType, setSearchType } = useContext(SearchContext);
+
     return (
         <>
-            <Button
-                to='/'
-                className='text-sm text-slate-600 flex items-center justify-around py-3 pl-1 lg:text-lg'
+            <div
+                className='text-sm text-slate-600 flex items-center justify-around py-3 pl-1 lg:text-lg cursor-pointer'
                 onClick={item.subNav && showNavbar}
             >
                 <span className='text-base w-1/6 pl-2'>{item.icon}</span>
-                <span className='text-base w-4/6'>{item.title}</span>
+                <span
+                    className='text-base w-4/6'
+                    onClick={(e) => {
+                        setSearchType(e.target.innerText);
+                    }}
+                >
+                    {item.title}
+                </span>
 
                 <span className='pr-2 w-1/6'>
                     {item.subNav && subNavBar
                         ? item.iconClosed
                         : item.iconOpened}
                 </span>
-            </Button>
+            </div>
             <div
                 className={
                     subNavBar
@@ -37,7 +46,15 @@ const SubSidebar = ({ item }) => {
                             key={index}
                             className='text-sm text-slate-600 py-2 pl-1 xl:text-base'
                         >
-                            <span className='w-full text-left'>
+                            <span
+                                className='w-full text-left'
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    console.log(e.target.innerText);
+                                    setSearchType(e.target.innerText);
+                                    setShowWidget(false);
+                                }}
+                            >
                                 {item.title}
                             </span>
                         </Button>

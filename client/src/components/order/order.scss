@@ -1,0 +1,25 @@
+.orderDetail__container {
+    .ant-steps.ant-steps-vertical
+        > .ant-steps-item
+        > .ant-steps-item-container
+        > .ant-steps-item-tail.ant-steps-item-tail {
+        top: -6px;
+        height: 125%;
+        width: 2px;
+        &:after {
+            background-color: var(--main-color);
+        }
+    }
+
+    .ant-steps .ant-steps-item-finish .ant-steps-item-icon {
+        background-color: var(--main-color);
+        border-color: #e6f4ff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+	.ant-steps-icon svg {
+		color: white
+	
+    }
+}

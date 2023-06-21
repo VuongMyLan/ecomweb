@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './search.scss';
 import { AudioOutlined } from '@ant-design/icons';
 import { Input, Space } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { SearchContext } from 'context/searchContext/SearchContext';
+
 const { Search } = Input;
 
 const suffix = (
@@ -16,14 +18,21 @@ const suffix = (
 );
 
 const SearchItem = ({ className }) => {
+    // get SearchContext
+    const { searchValue, setSearchValue } = useContext(SearchContext);
+    console.log('searchValue', searchValue);
     return (
         <div
-            className={`searchItem__icon text-center flex items-center justify-center lg:flex lg:w-1/3 2xl:w-1/2 ${className}`}
+            className={`searchItem__icon text-center flex items-center justify-center xl:flex xl:w-1/3 2xl:w-1/2 ${className}`}
         >
             <input
                 placeholder='Search your ingredients '
                 spellCheck={false}
-                className='py-1 px-3 w-full placeholder:text-base '
+                className='py-1 px-3 w-full placeholder:text-base'
+                values={searchValue}
+                onChange={(e) => {
+                    setSearchValue(e.target.value);
+                }}
             />
 
             <button

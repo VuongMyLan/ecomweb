@@ -87,7 +87,7 @@ const Header = () => {
 
     return (
         <>
-            <div className='header__container flex items-center justify-between text-stone-700 bg-slate-100 py-1 fixed top-0 left-0 right-0 hidden lg:flex'>
+            <div className='header__container flex items-center justify-between text-stone-700 bg-slate-100 py-1 fixed top-0 left-0 right-0 hidden xl:flex'>
                 <div className='header__left flex items-center font-semibold lg:w-1/3 justify-start'>
                     <div className='header__logo ml-2'>
                         <Link to='/'>
@@ -188,7 +188,7 @@ const Header = () => {
                     </ul>
                 </div>
             </div>
-            <div className='header__sm bg-backgroundcolor fixed bottom-0 left-0 right-0 z-50 lg:hidden shawdow-2xl pt-1 z-40'>
+            <div className='header__sm bg-backgroundcolor fixed bottom-0 left-0 right-0 z-50 xl:hidden shawdow-2xl pt-1 z-40'>
                 <ul className='flex justify-between items-center'>
                     <li
                         className='p-3 hover:text-main'
@@ -242,14 +242,18 @@ const Header = () => {
                     </li>
                 </ul>
             </div>
-            <div className='flex items-center justify-around p-2 shadow-2xl h-20 lg:hidden mt-2'>
-                <img
-                    src={images.logo}
-                    alt='logoheader'
-                    className='w-auto object-contain h-full'
-                />
+            <div className='fixed z-[49] flex bg-slate-50 top-0 bottom-0 left-0 right-0 items-center justify-around p-2 border border-b-2 h-20 xl:hidden header__sm__logo'>
+                <a href='/' className='w-auto object-contain h-full'>
+                    <img
+                        src={images.logo}
+                        alt='logoheader'
+                        className='w-auto object-contain h-full '
+                    />
+                </a>
             </div>
-            {SearchSm && <SearchItem className='w-100vw px-5 m-2' />}
+            {SearchSm && (
+                <SearchItem className='w-100vw px-5 m-2 mt-[80px] mb-[-80px] xl:hidden' />
+            )}
             {showSideBarWidget && (
                 <SidebarWidget
                     itemWidget={sidebarItemWidget}

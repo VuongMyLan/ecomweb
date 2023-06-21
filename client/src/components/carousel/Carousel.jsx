@@ -5,7 +5,7 @@ import SearchItem from 'components/search/Search';
 import './carousel.scss';
 const Carousel = () => {
     return (
-        <div className='carousel__container w-full '>
+        <div className='carousel__container w-full mt-[80px] xl:mt-0'>
             <Image
                 src={images.carousel1}
                 alt='carousel'
