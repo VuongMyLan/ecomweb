@@ -1,18 +1,70 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import images from 'assets/img/index';
 import CONSTANT_TEXT from 'components/label.js';
 import { OrderContext } from 'context/orderContext/OrderContext';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
 const Order = ({ className }) => {
     const [statusTab, setStatusTab] = useState(0);
-    const { Order } = useContext(OrderContext);
-    console.log('Order', Order);
+    const { OrderList } = useContext(OrderContext);
+    const [tabContent, setTabContent] = useState([]);
+    const { allorder, toShip, toReceive, completed, cancelled } =
+        CONSTANT_TEXT.STATUS__TEXT;
+    const { orderPlaced, orderProcessing, orderShipped, orderCompleted } =
+        CONSTANT_TEXT.ORDER__PROGRESS;
+
+    console.log('tabContent', tabContent);
+
+    const filterTab = (tabContent) => {
+        switch (tabContent) {
+            case allorder:
+                const newArr = [];
+                Object.values(OrderList)?.forEach((item) => newArr.push(item));
+                setTabContent(newArr);
+                break;
+            case toShip:
+                setTabContent(
+                    Object.values(OrderList).filter(
+                        (item) =>
+                            item.status === (orderPlaced || orderProcessing)
+                    )
+                );
+                break;
+            case toReceive:
+                setTabContent(
+                    Object.values(OrderList).filter(
+                        (item) => item.status === orderShipped
+                    )
+                );
+                break;
+            case completed:
+                setTabContent(
+                    Object.values(OrderList).filter(
+                        (item) => item.status === orderCompleted
+                    )
+                );
+                break;
+            case cancelled:
+                setTabContent([]);
+                break;
+            default:
+                return tabContent;
+        }
+    };
+
+    useEffect(() => {
+        if (OrderList) {
+            filterTab(allorder);
+        }
+    }, [OrderList]);
+
     const renderOrder = () => {
-        return Object.values(Order)?.map((item) => (
+        return tabContent?.map((item) => (
             <Link
-				to={`/orders/${item.ordernumber}`} 
-                className='rounded-xl m-2 border border-slate-200 bg-slate-100 mt-4 mx-[40px]'
+                to={`/orders/${item.ordernumber}`}
+                className='rounded-xl border border-slate-200 mb-3 bg-slate-50 mt-4 m-auto block px-2 xl:m-0 xl:mb-3'
                 key={item.ordernumber}
             >
                 <div className='flex items-center justify-around mx-4'>
@@ -31,7 +83,7 @@ const Order = ({ className }) => {
                 <div className='flex my-3 border-b border-slate-300 mx-4'>
                     <div className='w-1/5 h-1/5 mb-2 md:h-[120px] md:w-[120px]'>
                         <img
-                            src={item.cart[0].productData.image}
+                            src={item && item.cart[0].productData.image}
                             className='object-cover rounded-md md:h-[120px] md:w-[120px]'
                             alt=''
                         />
@@ -58,16 +110,16 @@ const Order = ({ className }) => {
                     </div>
                 </div>
 
-                <p className='text-right text-red-600 font-bold px-4'>
-                    Order Total: $ {item && item.totalPayment.toFixed(2)}
-                </p>
                 <div className='flex justify-between px-4 py-2'>
                     <p className='text-main font-bold'>
-                        {item.received && 'Order Received'}
+                        {item.status === orderCompleted && 'Order Received'}
                     </p>
-                    <p className='ml-4 font-semibold text-slate-50 px-3 py-1 bg-orange-600 rounded-md cursor-pointer'>
+                    <p className='text-right text-red-600 font-bold'>
+                        Order Total: $ {item && item.fee.roundedTotal}
+                    </p>
+                    {/* <p className='ml-4 font-semibold text-slate-50 px-3 py-1 bg-orange-600 rounded-md cursor-pointer'>
                         Rating
-                    </p>
+                    </p> */}
                 </div>
             </Link>
         ));
@@ -76,13 +128,20 @@ const Order = ({ className }) => {
     return (
         <div className={`${className} `}>
             <div className='px-2  text-center md:hidden '>
-                <select className='px-1 py-2 shadow-md bg-main text-slate-50 rounded-md'>
-                    <option>All orders</option>
-                    <option>To pay</option>
-                    <option>To ship</option>
-                    <option>To received</option>
-                    <option>Completed</option>
-                    <option>Cancelled</option>
+                <select
+                    className='px-1 py-2 shadow-md bg-main text-slate-50 rounded-md'
+                    onChange={(e) => {
+                        console.log(e.target.value);
+                        filterTab(e.target.value);
+                    }}
+                >
+                    {Object.values(CONSTANT_TEXT.STATUS__TEXT).map(
+                        (item, i) => (
+                            <option key={i} value={item}>
+                                {item}
+                            </option>
+                        )
+                    )}
                 </select>
             </div>
             <div className='hidden m-4 justify-between md:flex mx-[20px]'>
@@ -94,7 +153,8 @@ const Order = ({ className }) => {
                                 ? 'bg-main text-slate-50 shadow-xl rounded-md'
                                 : ''
                         }`}
-                        onClick={() => {
+                        onClick={(e) => {
+                            filterTab(e.target.innerText);
                             setStatusTab(i);
                         }}
                     >
@@ -102,8 +162,26 @@ const Order = ({ className }) => {
                     </div>
                 ))}
             </div>
-
-            {Order && renderOrder()}
+            {Object.keys(OrderList).length === 0 && (
+                <div className='text-center my-3 m-auto p-2 flex flex-col justify-center items-center'>
+                    <img
+                        className='shadow rounded-md max-w-[300px] max-h-[300px] object-cover'
+                        src='https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/Noorder.png?alt=media&token=fcc38ffb-1492-4775-9812-3a334c12dbc6'
+                        alt=''
+                    />{' '}
+                    <p className='p-2'>You have no orders</p>
+                    <p className=''>
+                        Order now at:{' '}
+                        <Link to='/cart'>
+                            <FontAwesomeIcon
+                                icon={faCartShopping}
+                                className='text-main'
+                            />
+                        </Link>{' '}
+                    </p>
+                </div>
+            )}
+            {OrderList && renderOrder()}
         </div>
     );
 };

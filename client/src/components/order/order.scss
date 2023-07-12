@@ -18,8 +18,20 @@
         justify-content: center;
         align-items: center;
     }
-	.ant-steps-icon svg {
-		color: white
-	
+    .ant-steps-icon svg {
+        color: white;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .ant-steps
+        .ant-steps-item-finish
+        > .ant-steps-item-container
+        > .ant-steps-item-content
+        > .ant-steps-item-title::after {
+        top: -15px;
+        left: 40px;
+
+        background-color: var(--main-color);
     }
 }

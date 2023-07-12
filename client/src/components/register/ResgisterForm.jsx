@@ -96,7 +96,7 @@ const RegisterForm = () => {
                                             htmlFor='username'
                                             className='text-left px-2 text-base '
                                         >
-                                            Username:
+                                            <p className='flex items-center'><span className='text-red-500 font-bold text-xl mr-1'>* </span>Username:</p>
                                         </label>
                                         <input
                                             id='username'
@@ -130,7 +130,7 @@ const RegisterForm = () => {
                                             htmlFor='email'
                                             className='text-left px-2 text-base '
                                         >
-                                            Email:
+                                               <p className='flex items-center'><span className='text-red-500 font-bold text-xl mr-1'>* </span>Email:</p>
                                         </label>
                                         <input
                                             id='email'
@@ -163,7 +163,7 @@ const RegisterForm = () => {
                                         htmlFor='password'
                                         className='text-left px-2 text-base '
                                     >
-                                        Password:
+                                           <p className='flex items-center'><span className='text-red-500 font-bold text-xl mr-1'>* </span>Password:</p>
                                     </label>
                                     <input
                                         id='password'
@@ -195,7 +195,7 @@ const RegisterForm = () => {
                                         htmlFor='confirmPassword'
                                         className='text-left px-2 text-base '
                                     >
-                                        Confirm Password:
+                                           <p className='flex items-center'><span className='text-red-500 font-bold text-xl mr-1'>* </span>Confirm Password:</p>
                                     </label>
                                     <input
                                         id='confirmPassword'

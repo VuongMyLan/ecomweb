@@ -1,4 +1,3 @@
-import { useContext } from 'react';
 import { db, storage } from '../firebase';
 import {
     doc,
@@ -9,9 +8,10 @@ import {
     deleteDoc,
     serverTimestamp,
 } from 'firebase/firestore';
-import { CartContext } from 'context/cartContext/cartContext';
-import { AuthContext } from 'context/authContext/AuthContext';
-import { v4 as uuidv4 } from 'uuid';
+import CONSTANT_TEXT from 'components/label.js';
+
+const { orderPlaced, orderProcessing, orderShipped, orderCompleted } =
+    CONSTANT_TEXT.ORDER__PROGRESS;
 export const handleAddToCart = async (product, id, dispatch) => {
     const docSnap = await doc(db, 'carts', id);
     const document = await getDoc(doc(db, 'carts', id));
@@ -72,7 +72,7 @@ export const handleRemoveFromCart = async (product, id, dispatch) => {
         await updateDoc(docSnap, {
             [idProduct]: {
                 id: product.id,
-                image: '',
+                image: product.image,
                 name: product.name,
                 promotionprice: product.promotionprice,
                 unit: product.unit,
@@ -104,37 +104,120 @@ export const deleteItem = async (product, id) => {
         [productId]: deleteField(),
     });
 };
-export const handleCreateOrder = async (cart, uid, totalPayment) => {
+export const handleCreateOrder = async (
+    cart,
+    uid,
+    subtotal,
+    roundedTotal,
+    shippingfee,
+    orderID,
+    info
+) => {
     if (cart.length > 0) {
         const orderCart = [...cart];
         const orderDoc = await doc(db, 'orders', uid);
         // const cartDoc = await doc(db, 'carts', currentUser.uid);
         const document = await getDoc(doc(db, 'orders', uid));
-        const id = uuidv4();
         if (!document.data()) {
             await setDoc(doc(db, 'orders', uid), {
-                [id]: {
-                    ordernumber: id,
-                    received: true,
+                [orderID]: {
+                    ordernumber: orderID,
                     cart: [...orderCart],
-                    status: 'Order placed',
-                    totalPayment: totalPayment,
+                    status: orderPlaced,
+
+                    fee: {
+                        subtotal,
+                        roundedTotal,
+                        shippingfee,
+                    },
                     createdAt: serverTimestamp(),
+                    info: { ...info },
                 },
             });
         } else {
             await updateDoc(orderDoc, {
-                [id]: {
-                    ordernumber: id,
-                    received: true,
+                [orderID]: {
+                    ordernumber: orderID,
+                    status: orderPlaced,
+
                     cart: [...orderCart],
-                    status: 'Order placed',
-                    totalPayment: totalPayment,
+                    fee: {
+                        subtotal,
+                        roundedTotal,
+                        shippingfee,
+                    },
                     createdAt: serverTimestamp(),
+                    info: { ...info },
                 },
             });
         }
 
         await deleteDoc(doc(db, 'carts', uid));
     }
+};
+
+export const handleAddToWishLists = async (product, uid) => {
+    const wishlistsDoc = await doc(db, 'wishlists', uid);
+    // const cartDoc = await doc(db, 'carts', currentUser.uid);
+    const document = await getDoc(doc(db, 'wishlists', uid));
+    if (!document.data()) {
+        await setDoc(doc(db, 'wishlists', uid), {
+            [product.id]: {
+                productData: {
+                    id: product.id,
+                    image: product.image,
+                    name: product.name,
+                    promotionprice: product.promotionprice,
+                    unit: product.unit,
+                },
+                quantity: 1,
+            },
+        });
+    } else {
+        await updateDoc(wishlistsDoc, {
+            [product.id]: {
+                productData: {
+                    id: product.id,
+                    image: product.image,
+                    name: product.name,
+                    promotionprice: product.promotionprice,
+                    unit: product.unit,
+                },
+                quantity: 1,
+            },
+        });
+    }
+};
+
+export const removeFromWishList = async (product, uid) => {
+    const wishlistsDoc = await doc(db, 'wishlists', uid);
+    await updateDoc(wishlistsDoc, {
+        [product.id]: deleteField(),
+    });
+};
+
+export const handleAddToSaveRecipes = async (recipe, uid) => {
+    const savedRecipesDoc = await doc(db, 'savedrecipes', uid);
+    // const cartDoc = await doc(db, 'carts', currentUser.uid);
+    const document = await getDoc(doc(db, 'savedrecipes', uid));
+    if (!document.data()) {
+        await setDoc(doc(db, 'savedrecipes', uid), {
+            [recipe.uri.split('#')[1]]: {
+                ...recipe,
+            },
+        });
+    } else {
+        await updateDoc(savedRecipesDoc, {
+            [recipe.uri.split('#')[1]]: {
+                ...recipe,
+            },
+        });
+    }
+};
+
+export const removeFromSavedRecipes = async (recipe, uid) => {
+    const wishlistsDoc = await doc(db, 'savedrecipes', uid);
+    await updateDoc(wishlistsDoc, {
+        [recipe.uri.split('#')[1]]: deleteField(),
+    });
 };

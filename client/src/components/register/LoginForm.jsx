@@ -59,7 +59,7 @@ const LoginForm = () => {
                                             htmlFor='email'
                                             className='text-left px-2 text-base '
                                         >
-                                            Email:
+                                               <p className='flex items-center'><span className='text-red-500 font-bold text-xl mr-1'>* </span>Email:</p>
                                         </label>
                                         <input
                                             id='email'
@@ -92,7 +92,7 @@ const LoginForm = () => {
                                         htmlFor='password'
                                         className='text-left px-2 text-base '
                                     >
-                                        Password:
+                                           <p className='flex items-center'><span className='text-red-500 font-bold text-xl mr-1'>* </span>Password:</p>
                                     </label>
                                     <input
                                         id='password'

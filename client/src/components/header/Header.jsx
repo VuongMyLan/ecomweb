@@ -1,4 +1,5 @@
-import React, { useContext, useState } from 'react';
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React, { useContext, useEffect, useState } from 'react';
 import images from 'assets/img/index';
 import SearchItem from 'components/search/Search';
 import { SubMenuItem } from 'components/submenuItems/SubMenuItem';
@@ -11,8 +12,10 @@ import {
     faBell,
     faCartShopping,
     faCircleXmark,
+    faHome,
     faLanguage,
     faMagnifyingGlass,
+    faRightToBracket,
 } from '@fortawesome/free-solid-svg-icons';
 
 // Tippy
@@ -22,16 +25,22 @@ import TippyHeadless from '@tippyjs/react/headless';
 import { CartContext } from 'context/cartContext/cartContext';
 import SidebarWidget from 'components/sidebar/SidebarWidget';
 import Modal from 'components/modal/Modal';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { auth } from '../../firebase';
 import { signOut } from 'firebase/auth';
+import { AuthContext } from 'context/authContext/AuthContext';
+import { GetSavedRec } from 'utils/getData';
 
 const Header = () => {
     const user = true;
+    const { currentUser } = useContext(AuthContext);
     const { cart } = useContext(CartContext);
     const sidebarItemWidget = CONSTANT_TEXT.HEADER_TEXT;
     const profileItemWidget = CONSTANT_TEXT.PROFILE__TEXT;
+    const [searchIcon, setSearchIcon] = useState();
+    const [userInfo, setUserInfo] = useState([]);
     const navigate = useNavigate();
+    const { pathname } = useLocation();
 
     // Calculate quantity in Cart
     let quantity = cart?.reduce((totalSum, curValue) => {
@@ -78,17 +87,23 @@ const Header = () => {
             .then(() => {
                 console.log('sign out successful');
                 localStorage.setItem('user', null);
-                navigate('/login');
             })
             .catch((error) => {
                 console.log('Fail to sign out');
             });
     };
 
+    useEffect(() => {
+        if (currentUser) {
+            GetSavedRec('users', currentUser.uid, setUserInfo);
+        }
+    }, [currentUser]);
+
+    console.log();
     return (
         <>
-            <div className='header__container flex items-center justify-between text-stone-700 bg-slate-100 py-1 fixed top-0 left-0 right-0 hidden xl:flex'>
-                <div className='header__left flex items-center font-semibold lg:w-1/3 justify-start'>
+            <div className='header__container items-center justify-between text-stone-700 bg-slate-100 py-1 fixed top-0 left-0 right-0 hidden xl:flex'>
+                <div className='header__left flex items-center font-semibold xl:w-[25%] justify-start'>
                     <div className='header__logo ml-2'>
                         <Link to='/'>
                             <img
@@ -101,25 +116,27 @@ const Header = () => {
                     <div className='header__selection '>
                         <ul className='flex items-center text-base'>
                             <li className='link ml-2  mr-2 p-2 border-gray-200 header__item'>
-                                <a className='' href='/'>
+                                <Link className='' to='/recipes'>
                                     Recipes
-                                </a>
+                                </Link>
                             </li>
                             <li className='link ml-2  mr-2 p-2 header__item'>
-                                <a href='/'>Store</a>
+                                <Link to='/'>Store</Link>
                             </li>
                         </ul>
                     </div>
                 </div>
 
-                {showSearch && <SearchItem className='hidden' />}
-                <div className='header__right font-semibold lg:w-2/5 xl:w-1/3'>
+                {showSearch && (
+                    <SearchItem className='hidden xl:flex max-w-[30%] 2xl:w-1/2' />
+                )}
+                <div className='header__right font-semibold xl:min-w-[400px]'>
                     {' '}
                     <ul className='flex items-center justify-end'>
                         <li className='link p-2 header__item'>
-                            <a className='' href='/'>
+                            <Link to='/recipes/c/savedrecipes'>
                                 Saved Recipes
-                            </a>
+                            </Link>
                         </li>
                         <li className='link p-2 header__item'>
                             <a href='/'>Offers</a>
@@ -155,7 +172,7 @@ const Header = () => {
                                 </Link>
                             </Tippy>
                         </div>
-                        {user ? (
+                        {currentUser ? (
                             <TippyHeadless
                                 interactive
                                 arrow={true}
@@ -169,26 +186,32 @@ const Header = () => {
                                         {...attrs}
                                     >
                                         <SubMenuItem
-                                            handleLogout={handleLogout}
+                                            handleLogout={() => {
+                                                handleLogout();
+                                                navigate('/login');
+                                            }}
                                         />
                                     </div>
                                 )}
                             >
                                 <img
-                                    src='https://plus.unsplash.com/premium_photo-1664637351074-6f91797711ed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1075&q=80'
+                                    src={
+                                        (currentUser && userInfo.img) ||
+                                        'https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/default-avatar.webp?alt=media&token=91818476-3ba0-4c46-8071-d34c96310817'
+                                    }
                                     alt=''
                                     className='avatar__img m-2 mt-1'
                                 />
                             </TippyHeadless>
                         ) : (
                             <li className='link ml-2 mr-2 py-2 px-3 button__login text-slate-50 rounded-md font-semibold header__item'>
-                                <a href='/'>Log in / Register</a>
+                                <a href='/login'>Log in / Register</a>
                             </li>
                         )}
                     </ul>
                 </div>
             </div>
-            <div className='header__sm bg-backgroundcolor fixed bottom-0 left-0 right-0 z-50 xl:hidden shawdow-2xl pt-1 z-40'>
+            <div className='header__sm bg-backgroundcolor fixed bottom-0 left-0 right-0 xl:hidden shadow-2xl pt-1 z-40'>
                 <ul className='flex justify-between items-center'>
                     <li
                         className='p-3 hover:text-main'
@@ -202,16 +225,25 @@ const Header = () => {
                         </a>
                     </li>
                     <li>
-                        <a
-                            href='#'
-                            className='inline-block'
-                            onClick={showSearchSm}
-                        >
-                            <FontAwesomeIcon
-                                icon={faMagnifyingGlass}
-                                className='text-3xl text-slate-500 hover:text-main'
-                            />
-                        </a>
+                        {pathname === '/' || pathname === '/recipes' ? (
+                            <a
+                                href='#'
+                                className='inline-block'
+                                onClick={showSearchSm}
+                            >
+                                <FontAwesomeIcon
+                                    icon={faMagnifyingGlass}
+                                    className='text-3xl text-slate-500 hover:text-main'
+                                />
+                            </a>
+                        ) : (
+                            <Link to='/' className='cursor-pointer'>
+                                <FontAwesomeIcon
+                                    icon={faHome}
+                                    className='text-3xl text-slate-500 hover:text-main'
+                                />
+                            </Link>
+                        )}
                     </li>
                     <li>
                         <Link to='/cart'>
@@ -228,18 +260,34 @@ const Header = () => {
                             </p>
                         </Link>
                     </li>
-                    <li
-                        className='px-3 py-2'
-                        onClick={() => setShowSideBarWidget(false)}
-                    >
-                        <a href='#' onClick={renderProfileWidget}>
-                            <img
-                                src='https://plus.unsplash.com/premium_photo-1664637351074-6f91797711ed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1075&q=80'
-                                alt=''
-                                className='avatar__img m-2 mt-1 rounded-full w-10 h-10 border-2 hover:border-main '
-                            />
-                        </a>
-                    </li>
+                    {!currentUser ? (
+                        <Tippy content='Login / Register'>
+                            <li className='link ml-2 mr-2 py-2 px-3 button__login  rounded-md font-semibold header__item '>
+                                <a href='/login'>
+                                    <FontAwesomeIcon
+                                        icon={faRightToBracket}
+                                        className='text-3xl text-slate-500'
+                                    />
+                                </a>
+                            </li>
+                        </Tippy>
+                    ) : (
+                        <li
+                            className='px-3 py-2'
+                            onClick={() => setShowSideBarWidget(false)}
+                        >
+                            <a href='#' onClick={renderProfileWidget}>
+                                <img
+                                    src={
+                                        (currentUser && userInfo.img) ||
+                                        'https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/default-avatar.webp?alt=media&token=91818476-3ba0-4c46-8071-d34c96310817'
+                                    }
+                                    alt=''
+                                    className='avatar__img m-2 mt-1 rounded-full w-10 h-10 border-2 hover:border-main '
+                                />
+                            </a>
+                        </li>
+                    )}
                 </ul>
             </div>
             <div className='fixed z-[49] flex bg-slate-50 top-0 bottom-0 left-0 right-0 items-center justify-around p-2 border border-b-2 h-20 xl:hidden header__sm__logo'>

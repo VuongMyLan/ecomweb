@@ -1,6 +1,8 @@
 import { onAuthStateChanged } from 'firebase/auth';
 import React, { createContext, useEffect, useState } from 'react';
 import { auth } from '../../firebase';
+import { useNavigate } from 'react-router-dom';
+import Home from 'pages/home/Home';
 
 const values = {};
 export const AuthContext = createContext(values);
@@ -18,11 +20,11 @@ export const AuthContextProvider = ({ children }) => {
                 setCurrentUser(user);
                 localStorage.setItem('user', JSON.stringify(currentUser));
             } else {
-                // User is signed out
-                // ...
+                setCurrentUser(user);
             }
         });
     }, [currentUser]);
+
     // console.log('values', values);
     return (
         <AuthContext.Provider value={values}>{children}</AuthContext.Provider>

@@ -22,12 +22,15 @@ const SubSidebar = ({ item, setShowWidget }) => {
                     className='text-base w-4/6'
                     onClick={(e) => {
                         setSearchType(e.target.innerText);
+                        if (!item.subNav) {
+                            setShowWidget(false);
+                        }
                     }}
                 >
                     {item.title}
                 </span>
 
-                <span className='pr-2 w-1/6'>
+                <span className='pr-2 w-1/6 text-base'>
                     {item.subNav && subNavBar
                         ? item.iconClosed
                         : item.iconOpened}
@@ -47,10 +50,10 @@ const SubSidebar = ({ item, setShowWidget }) => {
                             className='text-sm text-slate-600 py-2 pl-1 xl:text-base'
                         >
                             <span
-                                className='w-full text-left'
+                                className='w-full text-left text-base'
                                 onClick={(e) => {
                                     e.stopPropagation();
-                                    console.log(e.target.innerText);
+                                    // console.log(e.target.innerText);
                                     setSearchType(e.target.innerText);
                                     setShowWidget(false);
                                 }}

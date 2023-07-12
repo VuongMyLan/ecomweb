@@ -28,7 +28,7 @@ const subMenuItemData = [
     {
         icon: <FontAwesomeIcon icon={faSignOut} />,
         title: 'Log out',
-        to: '/logout',
+        to: '/',
     },
 ];
 
@@ -47,7 +47,7 @@ export const SubMenuItem = ({ handleLogout }) => {
                 <Button
                     key={index}
                     leftIcon={item.icon}
-                    className='block py-4 p-5 w-full text-left'
+                    className='block py-4 p-5 w-full text-left cursor-pointer'
                     to={item.to}
                     onClick={item.title === 'Log out' ? handleLogout : null}
                 >

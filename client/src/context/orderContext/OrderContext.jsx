@@ -6,27 +6,29 @@ import { AuthContext } from 'context/authContext/AuthContext';
 import orderReducer from './OrderReducer';
 const { createContext } = require('react');
 
-const Order = {};
+const OrderList = {};
 
-export const OrderContext = createContext(Order);
+export const OrderContext = createContext(OrderList);
 export const OrderContextProvider = ({ children }) => {
     const { currentUser } = useContext(AuthContext);
     // console.log(currentUser);
-    const [state, dispatch] = useReducer(orderReducer, Order);
+    const [state, dispatch] = useReducer(orderReducer, OrderList);
     useEffect(() => {
-        const unsub = onSnapshot(doc(db, 'orders', currentUser.uid), (doc) => {
-            // console.log('Current data: ', doc.data());
-            dispatch({
-                type: 'FETCH_DATA',
-                payload: { ...doc.data() },
-            });
-        });
-        return () => {
-            unsub();
-        };
+        if (currentUser) {
+            const unsub = onSnapshot(
+                doc(db, 'orders', currentUser.uid),
+                (doc) => {
+                    // console.log('Current data: ', doc.data());
+                    dispatch({
+                        type: 'FETCH_DATA',
+                        payload: { ...doc.data() },
+                    });
+                }
+            );
+        }
     }, [currentUser, dispatch]);
     return (
-        <OrderContext.Provider value={{ Order: state, dispatch }}>
+        <OrderContext.Provider value={{ OrderList: state, dispatch }}>
             {children}
         </OrderContext.Provider>
     );

@@ -325,13 +325,13 @@
     },
     {
         "id": 29,
-        "name": "Simply Natural Fruits And Nuts",
+        "name": "Snikers Slice",
         "originalprice": 12.3,
         "promotionprice": 10.4,
         "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Fnuts%20and%20biscuits%2FFruits-And-Nuts-Full-Meal-Packet.jpg?alt=media&token=5cea3282-858c-4140-8855-e7ba09f33993",
         "unit": "kg",
         "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
-        "categories": ["Snack", "Nut & Biscuits"],
+        "categories": ["Snack", "Chocolates"],
         "desc": "A biscuit is a flour-based baked food product. This article covers the type of biscuit found in Africa, Asia, and Europe, which is typically hard, flat, and unleavened."
     },
     {
@@ -357,7 +357,7 @@
         "desc": "A biscuit is a flour-based baked food product. This article covers the type of biscuit found in Africa, Asia, and Europe, which is typically hard, flat, and unleavened."
     },
     {
-        "id": 31,
+        "id": 42,
         "name": "Badia Pine Nuts",
         "originalprice": 12.3,
         "promotionprice": 10.4,
@@ -422,17 +422,7 @@
         "categories": ["Snack", "Nut & Biscuits"],
         "desc": "A biscuit is a flour-based baked food product. This article covers the type of biscuit found in Africa, Asia, and Europe, which is typically hard, flat, and unleavened."
     },
-    {
-        "id": 37,
-        "name": "Ivory Cashew Nuts",
-        "originalprice": 12.3,
-        "promotionprice": 10.4,
-        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Fnuts%20and%20biscuits%2Fivory_cashewnut.jpg?alt=media&token=ea0904e2-4ddc-4a5d-ab6e-cd45ae400fe5",
-        "unit": "kg",
-        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
-        "categories": ["Snack", "Nut & Biscuits"],
-        "desc": "A biscuit is a flour-based baked food product. This article covers the type of biscuit found in Africa, Asia, and Europe, which is typically hard, flat, and unleavened."
-    },
+
     {
         "id": 37,
         "name": "Jaybees Whole Cashew Nuts",
@@ -445,7 +435,7 @@
         "desc": "A biscuit is a flour-based baked food product. This article covers the type of biscuit found in Africa, Asia, and Europe, which is typically hard, flat, and unleavened."
     },
     {
-        "id": 37,
+        "id": 42,
         "name": "Filipinos",
         "originalprice": 12.3,
         "promotionprice": 10.4,

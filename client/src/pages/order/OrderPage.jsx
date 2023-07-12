@@ -12,9 +12,9 @@ const OrderPage = () => {
         <div className='profile__container'>
             <ProfileHeader className='col-span-2 bg-slate-600 xl:hidden' />
             <Header className='hidden xl:flex profile__header' />
-            <div className='grid xl:grid-cols-12 xl:gap-3'>
-                <NavBar className='xl:col-span-2 hidden xl:block' />
-				{<Order className='xl:col-span-10' />}
+            <div className='flex'>
+                <NavBar className='xl:w-[200px] hidden xl:block' />
+                <Order className='flex-1 bg-slate-200 mx-auto p-2 lg:px-[50px] mb-[60px]' />
             </div>
         </div>
     );

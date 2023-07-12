@@ -1,6 +1,6 @@
 :root {
     --main-color: #009f7f;
-	--hover-button: rgb(1, 147, 118);
+    --hover-button: rgb(1, 147, 118);
     --header-height: 80px;
     --text-color: #4b5563;
     --button-background-color: #f3f4f6;
@@ -18,4 +18,16 @@ body {
 
 .link {
     text-decoration: none;
+}
+.float__button {
+    .ant-float-btn-default .ant-float-btn-body {
+        background-color: #009f7f;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .ant-float-btn-default .ant-float-btn-body .ant-float-btn-content .ant-float-btn-icon {
+        margin-top: 3px;
+		color: rgb(244, 240, 240)
+    }
 }

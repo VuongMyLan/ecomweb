@@ -37,14 +37,13 @@ const Profile = ({ className }) => {
     });
     const [img, setImg] = useState();
     const [perc, setPerc] = useState(null);
+    const [uploadProfilePic, setUploadProfilePic] = useState(false);
 
     // show Sidebar Profile on small device
     const [showSideBarWidget, setShowSideBarWidget] = useState(false);
     const renderSideBarWidget = () => {
         setShowSideBarWidget(true);
     };
-
-    const navigate = useNavigate();
 
     // Validation
     let profileSchema = yup.object().shape({
@@ -61,8 +60,8 @@ const Profile = ({ className }) => {
                     'Password should have min 5 characters, 1 upper case letter, 1 lower case letter, 1 numeric digit',
             })
             .required('Please enter your password'),
-        address: yup.string().required('Please enter your address'),
-        phonenumber: yup.string(),
+        // address: yup.string().required('Please enter your address'),
+        // phonenumber: yup.string().required(),
         gender: yup
             .string()
             .oneOf(['male', 'female', 'other'], 'Invalid Gender')
@@ -108,6 +107,10 @@ const Profile = ({ className }) => {
                         (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                     setPerc(progress);
                     console.log('Upload is ' + progress + '% done');
+                    setUploadProfilePic(true);
+                    setTimeout(() => {
+                        setUploadProfilePic(false);
+                    }, 5000);
                     switch (snapshot.state) {
                         case 'paused':
                             console.log('Upload is paused');
@@ -144,11 +147,24 @@ const Profile = ({ className }) => {
 
     // Submitform
     const onSubmit = async (values, action) => {
+        console.log(values);
         try {
             const user = doc(db, 'users', currentUser.uid);
-            await updateDoc(user, {
-                ...values,
-            });
+            if (values.phonenumber === undefined) {
+                await updateDoc(user, {
+                    ...values,
+                    phonenumber: '',
+                });
+            } else if (values.address === undefined) {
+                await updateDoc(user, {
+                    ...values,
+                    address: '',
+                });
+            } else {
+                await updateDoc(user, {
+                    ...values,
+                });
+            }
             setUpdateComplete(true);
             setTimeout(() => {
                 setUpdateComplete(false);
@@ -166,28 +182,34 @@ const Profile = ({ className }) => {
                         src={
                             (img && URL.createObjectURL(img)) ||
                             data.img ||
-                            images.profileImg
+                            'https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/default-avatar.webp?alt=media&token=91818476-3ba0-4c46-8071-d34c96310817'
                         }
                         alt=''
-                        className='h-[200px] w-[200px] object-cover rounded-full m-auto'
+                        className='h-[200px] w-[200px] object-cover rounded-md m-auto'
                     />
-                    <p className='mt-[20px] border bg-main rounded-md p-2 text-slate-50 cursor-pointer hover:bg-hovermain'>
-                        <label htmlFor='uploadfile'>
-                            <FontAwesomeIcon
-                                icon={faCloudArrowUp}
-                                className='cursor-pointer'
+                    <Tippy content='Upload photo'>
+                        <p className='mt-[20px] border bg-main rounded-md p-2 text-slate-50 cursor-pointer hover:bg-hovermain'>
+                            <label htmlFor='uploadfile'>
+                                <FontAwesomeIcon
+                                    icon={faCloudArrowUp}
+                                    className='cursor-pointer'
+                                />
+                            </label>
+                            <input
+                                className='ml-2 mr-2 hidden'
+                                type='file'
+                                id='uploadfile'
+                                onChange={handleUpload}
                             />
-                        </label>
-                        <input
-                            className='ml-2 mr-2 hidden'
-                            type='file'
-                            id='uploadfile'
-                            onChange={handleUpload}
-                        />
-                    </p>
-                    Upload Photo
+                        </p>
+                    </Tippy>
+                    {uploadProfilePic && (
+                        <p className='mt-3 text-red-500'>
+                            Your profile picture has been update successfully!
+                        </p>
+                    )}
                     {updateComplete && (
-                        <p className='mt-3'>
+                        <p className='mt-3 text-center'>
                             Your profile Information has been update
                             successfully!
                         </p>
@@ -202,7 +224,7 @@ const Profile = ({ className }) => {
                             onSubmit={onSubmit}
                         >
                             {(props) => (
-                                <Form className='my-[30px] w-11/12 m-auto mb-0'>
+                                <Form className='my-[30px] w-[90%] sm:w-[70%] m-auto mb-[60px] flex flex-col bg-white rounded-md pt-5'>
                                     <Field name='username'>
                                         {({
                                             field, // { name, value, onChange, onBlur }
@@ -210,7 +232,7 @@ const Profile = ({ className }) => {
                                             meta,
                                         }) => {
                                             return (
-                                                <div className='flex flex-col w-11/12 m-auto my-4 xl:w-3/4'>
+                                                <div className='flex flex-col w-11/12 m-auto my-2 xl:w-3/4'>
                                                     <div className='flex justify-between items-center'>
                                                         <label
                                                             htmlFor='username'
@@ -266,7 +288,7 @@ const Profile = ({ className }) => {
                                             meta,
                                         }) => {
                                             return (
-                                                <div className='flex flex-col w-11/12 m-auto my-4 xl:w-3/4'>
+                                                <div className='flex flex-col w-11/12 m-auto my-2 xl:w-3/4'>
                                                     <label
                                                         htmlFor='email'
                                                         className='text-left px-2 text-base '
@@ -302,7 +324,7 @@ const Profile = ({ className }) => {
                                             form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
                                             meta,
                                         }) => (
-                                            <div className='flex flex-col w-11/12 m-auto xl:w-3/4'>
+                                            <div className='flex flex-col w-11/12 m-auto xl:w-3/4 my-2'>
                                                 <label
                                                     htmlFor='password'
                                                     className='text-left px-2 text-base '
@@ -336,7 +358,7 @@ const Profile = ({ className }) => {
                                             form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
                                             meta,
                                         }) => (
-                                            <div className='flex flex-col w-11/12 m-auto xl:w-3/4 my-4'>
+                                            <div className='flex flex-col w-11/12 m-auto xl:w-3/4 my-2'>
                                                 <label
                                                     htmlFor='phonenumber'
                                                     className='text-left px-2 text-base '
@@ -370,7 +392,7 @@ const Profile = ({ className }) => {
                                             form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
                                             meta,
                                         }) => (
-                                            <div className='flex flex-col w-11/12 m-auto xl:w-3/4 my-4'>
+                                            <div className='flex flex-col w-11/12 m-auto xl:w-3/4 my-2'>
                                                 <label
                                                     htmlFor='address'
                                                     className='text-left px-2 text-base '
@@ -404,7 +426,7 @@ const Profile = ({ className }) => {
                                             form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
                                             meta,
                                         }) => (
-                                            <div className='flex flex-col w-11/12 m-auto xl:w-3/4 my-4'>
+                                            <div className='flex flex-col w-11/12 m-auto xl:w-3/4 my-2'>
                                                 <select
                                                     disabled={isEdit}
                                                     id='confirmPassword'
@@ -440,14 +462,14 @@ const Profile = ({ className }) => {
                                             </div>
                                         )}
                                     </Field>
-                                    <div className='mt-[30px] w-full flex justify-center'>
+                                    <div className='mt-[30px] w-full flex justify-center mb-[20px]'>
                                         <button
                                             type='submit'
                                             disabled={
                                                 (perc !== null && perc < 100) ||
                                                 props.isSubmitting
                                             }
-                                            className='bg-main text-slate-50 rounded-md p-2 font-bold text-base hover:bg-hovermain w-1/2 disabled:opacity-75'
+                                            className='bg-main text-slate-50 rounded-md p-2 font-bold text-base hover:bg-hovermain w-1/2 disabled:opacity-75 disabled:cursor-not-allowed'
                                         >
                                             Update
                                         </button>

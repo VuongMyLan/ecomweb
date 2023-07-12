@@ -7,18 +7,22 @@ import { CartContextProvider } from 'context/cartContext/cartContext';
 import { AuthContextProvider } from 'context/authContext/AuthContext';
 import { OrderContextProvider } from 'context/orderContext/OrderContext';
 import { SearchContextProvider } from 'context/searchContext/SearchContext';
+import SavedRecipesContextProvider from 'context/savedrecContext/SavedRecipesContext';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     // <React.StrictMode>
     <AuthContextProvider>
-        <CartContextProvider>
-            <OrderContextProvider>
-                <SearchContextProvider>
-                    <App />
-                </SearchContextProvider>
-            </OrderContextProvider>
-        </CartContextProvider>
+        <SavedRecipesContextProvider>
+            <CartContextProvider>
+                <OrderContextProvider>
+                    <SearchContextProvider>
+                        <App />
+                    </SearchContextProvider>
+                </OrderContextProvider>
+            </CartContextProvider>
+        </SavedRecipesContextProvider>
     </AuthContextProvider>
     // </React.StrictMode>
 );

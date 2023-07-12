@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { CartContext } from 'context/cartContext/cartContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus, faXmark } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { AuthContext } from 'context/authContext/AuthContext';
 import {
     handleAddToCart,
@@ -45,7 +45,7 @@ const Cart = () => {
     const columns = [
         {
             title: () => (
-                <div className='text-center text-base lg:text-xl xl:text-2xl'>
+                <div className='text-center text-base lg:text-xl'>
                     Item
                 </div>
             ),
@@ -54,7 +54,7 @@ const Cart = () => {
             render: (_, record, index) => {
                 return (
                     <div
-                        className='flex items-center justify-center text-base lg:text-xl xl:text-2xl'
+                        className='flex items-center justify-center text-base lg:text-xl'
                         key={index}
                     >
                         <img
@@ -68,7 +68,7 @@ const Cart = () => {
         },
         {
             title: () => (
-                <div className='text-center text-base  lg:text-xl xl:text-2xl'>
+                <div className='text-center text-base  lg:text-xl'>
                     Name
                 </div>
             ),
@@ -77,7 +77,7 @@ const Cart = () => {
             render: (_, record, index) => {
                 return (
                     <div
-                        className='text-center text-base  lg:text-xl xl:text-2xl'
+                        className='text-center text-base  lg:text-xl'
                         key={index}
                     >
                         {record.productData.name}
@@ -87,7 +87,7 @@ const Cart = () => {
         },
         {
             title: () => (
-                <div className='text-center text-base lg:text-xl xl:text-2xl'>
+                <div className='text-center text-base lg:text-xl'>
                     Price
                 </div>
             ),
@@ -96,7 +96,7 @@ const Cart = () => {
             render: (_, record, index) => {
                 return (
                     <div
-                        className='text-center text-base lg:text-xl xl:text-2xl'
+                        className='text-center text-base lg:text-xl'
                         key={index}
                     >
                         $ {record.productData.promotionprice}
@@ -106,7 +106,7 @@ const Cart = () => {
         },
         {
             title: () => (
-                <div className='text-center text-base lg:text-xl xl:text-2xl'>
+                <div className='text-center text-base lg:text-xl'>
                     Quantity
                 </div>
             ),
@@ -115,7 +115,7 @@ const Cart = () => {
             render: (_, record, index) => {
                 return (
                     <div
-                        className='text-center text-base lg:text-xl xl:text-2xl'
+                        className='text-center text-base lg:text-xl'
                         key={index}
                     >
                         <span
@@ -156,7 +156,7 @@ const Cart = () => {
         },
         {
             title: () => (
-                <div className='text-center text-base lg:text-xl xl:text-2xl'>
+                <div className='text-center text-base lg:text-xl'>
                     Action
                 </div>
             ),
@@ -164,7 +164,7 @@ const Cart = () => {
             dataIndex: 'action',
             render: (_, record, index) => (
                 <div
-                    className='cursor-pointer hover:text-main text-center text-base lg:text-xl xl:text-2xl'
+                    className='cursor-pointer hover:text-main text-center text-base lg:text-xl'
                     key={index}
                     onClick={() => {
                         deleteItem(record.productData, currentUser.uid);
@@ -195,8 +195,8 @@ const Cart = () => {
         ),
     };
     return (
-        <>
-            <div className='hidden md:block mt-[80px]'>
+        <div className='bg-slate-100 py-[10px]'>
+            <div className='hidden md:block mt-[80px] xl:w-[80%] xl:mx-auto shadow'>
                 <Table
                     columns={columns}
                     pagination={false}
@@ -205,7 +205,7 @@ const Cart = () => {
                     locale={locale}
                 />
             </div>
-            <div className='mb-[70px] flex flex-col mt-[80px]'>
+            <div className='md:hidden flex-col mt-[80px]'>
                 {cart?.length === 0 ? (
                     <div className='text-center text-xl mt-5 md:hidden'>
                         <img
@@ -217,7 +217,7 @@ const Cart = () => {
                 ) : (
                     cart?.map((item, index) => (
                         <div
-                            className='flex bg-slate-100 items-center justify-between my-1 md:hidden'
+                            className='flex bg-white items-center justify-between my-1 md:hidden'
                             key={index}
                         >
                             <div className='w-1/2 flex items-center'>
@@ -230,7 +230,7 @@ const Cart = () => {
                                 </div>
                                 <div className='p-2 mr-4'>
                                     <p className='text-base font-bold'>
-                                        {item.productData.name}
+                                      <Link to={`/product/${item.productData.id}`}>{item.productData.name}</Link>
                                     </p>
                                     <p className='font-normal'>
                                         $ {item.productData.promotionprice} /{' '}
@@ -248,13 +248,6 @@ const Cart = () => {
                                                 currentUser.uid,
                                                 dispatch
                                             );
-                                            // dispatch({
-                                            //     type: 'REMOVE_FROM_CART',
-                                            //     payload: {
-                                            //         productData: item.productData,
-                                            //         quantity: 1,
-                                            //     },
-                                            // });
                                         }}
                                     >
                                         <FontAwesomeIcon icon={faMinus} />
@@ -283,13 +276,6 @@ const Cart = () => {
                                                 item.productData,
                                                 currentUser.uid
                                             );
-                                            // dispatch({
-                                            //     type: 'DELETE_ITEM',
-                                            //     payload: {
-                                            //         productData: item.productData,
-                                            //         quantity: 1,
-                                            //     },
-                                            // });
                                         }}
                                     >
                                         <FontAwesomeIcon
@@ -303,32 +289,26 @@ const Cart = () => {
                     ))
                 )}
 
+            </div>
                 {cart?.length > 0 && (
-                    <div className='text-right flex mt-[20px] flex-col sm:justify-end sm:flex-row sm:items-center'>
+                    <div className='text-right flex mt-[20px] flex-col sm:justify-end sm:flex-row sm:items-center mb-[70px] xl:w-[70%] xl:mx-auto '>
                         <p className='bg-main text-slate-50 font-bold rounded-md text-base w-11/12 m-auto text-left sm:mx-[50px] px-[30px] py-[10px] mb-[20px] sm:text-center'>
                             Total Payment:{' '}
                             <span className='font-bold pl-[10px] text-2xl'>
                                 ${totalPayment.toFixed(2)}{' '}
                             </span>
                         </p>
-                        <div
-                            onClick={() =>
-                                handleCreateOrder(
-                                    cart,
-                                    currentUser.uid,
-                                    totalPayment
-                                )
-                            }
+                        <Link
+                            to='/checkout'
                             className='block w-11/12 m-auto text-center mt-0 h-[52px]'
                         >
-                            <p className='h-[52px] bg-slate-100 text-slate-600 font-bold rounded-md px-[10px] py-[10px] text-base border cursor-pointer hover:border-main hover:border  sm:mr-[50px] sm:py-[10px] sm:text-center sm:px-1 leading-[30px]'>
+                            <p className='h-[52px] bg-slate-200 text-slate-600 font-bold rounded-md px-[10px] py-[10px] text-base border cursor-pointer hover:border-main hover:border  sm:mr-[50px] sm:py-[10px] sm:text-center sm:px-1 leading-[30px]'>
                                 Go to checkout page
                             </p>
-                        </div>
+                        </Link>
                     </div>
                 )}
-            </div>
-        </>
+        </div>
     );
 };
 

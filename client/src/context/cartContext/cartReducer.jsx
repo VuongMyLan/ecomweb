@@ -1,7 +1,7 @@
 const cartReducer = (state, action) => {
-    // console.log('action.payload', action.payload);
+    console.log('action.type', action.type);
     let id;
-    if (action.type !== 'FETCH_DATA') {
+    if (action.type !== 'FETCH_DATA' && action.type !== 'NO USER') {
         id = action.payload.productData.id;
     }
     // console.log('state.cart', state.cart);
@@ -72,6 +72,13 @@ const cartReducer = (state, action) => {
                 cart: [...newstate],
             };
         }
+        case 'NO USER': {
+            return {
+                ...state,
+                cart: [],
+            };
+        }
+
         default:
             return state;
     }

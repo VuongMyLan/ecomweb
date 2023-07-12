@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { array } from 'yup';
 const SidebarWidgetItem = ({
     images,
@@ -9,14 +9,24 @@ const SidebarWidgetItem = ({
     itemWidget,
     handleLogout,
 }) => {
+    const navigate = useNavigate();
     const arrayValue = Object.values(itemWidget);
     const renderlistitem = () => {
         return arrayValue?.map((item, i) => (
-            <div className='py-3 hover:text-main block' key={i}>
+            <div className='py-3 hover:text-main block cursor-pointer' key={i}>
                 {item.title !== 'Log out' ? (
-                    <Link to={item.to}>{item.title}</Link>
+                    <Link to={item.to} onClick={() => setShowWidget(false)}>
+                        {item.title}
+                    </Link>
                 ) : (
-                    <p onClick={handleLogout}>{item.title}</p>
+                    <p
+                        onClick={() => {
+                            handleLogout();
+                            navigate('/');
+                        }}
+                    >
+                        {item.title}
+                    </p>
                 )}
             </div>
         ));

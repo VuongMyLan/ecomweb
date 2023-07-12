@@ -16,20 +16,25 @@ export const CartContextProvider = ({ children }) => {
     const { currentUser } = useContext(AuthContext);
     const [state, dispatch] = useReducer(cartReducer, Cart);
 
-
-
     useEffect(() => {
-        const unsub = onSnapshot(doc(db, 'carts', currentUser.uid), (doc) => {
-            // console.log('Current data: ', doc.data());
-            dispatch({
-                type: 'FETCH_DATA',
-                payload: {...doc.data()},
-            });
-        });
-        return () => {
-            unsub();
-        };
-    }, [currentUser.uid, dispatch]);
+        if (currentUser) {
+            const unsub = onSnapshot(
+                doc(db, 'carts', currentUser.uid),
+                (doc) => {
+                    // console.log('Current data: ', doc.data());
+                    dispatch({
+                        type: 'FETCH_DATA',
+                        payload: { ...doc.data() },
+                    });
+                }
+            );
+        } else {
+			dispatch({
+				type: 'NO USER',
+				payload: [],
+			});
+		}
+    }, [currentUser, dispatch]);
 
     return (
         <CartContext.Provider

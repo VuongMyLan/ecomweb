@@ -76,30 +76,4 @@ export const SidebarData = [
             },
         ],
     },
-
-    {
-        title: 'Pet Care',
-        path: '/product',
-        icon: <FontAwesomeIcon icon={faDog} />,
-        iconClosed: <FontAwesomeIcon icon={faCaretUp} />,
-        iconOpened: <FontAwesomeIcon icon={faCaretDown} />,
-
-        subNav: [
-            {
-                title: 'Cat dog',
-                path: '/product/catdog',
-                icon: null,
-            },
-            {
-                title: 'Message 2',
-                path: '/product/catdog',
-                icon: null,
-            },
-        ],
-    },
-    {
-        title: 'Cooking',
-        path: '/product',
-        icon: <FontAwesomeIcon icon={faUtensils} />,
-    },
 ];
