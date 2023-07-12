@@ -1,5 +1,6 @@
 import {
     BrowserRouter,
+    HashRouter,
     Navigate,
     Outlet,
     Route,
@@ -50,7 +51,7 @@ function App() {
         </>
     );
     return (
-        <BrowserRouter>
+        <HashRouter>
             <div className='float__button'>
                 <FloatButton.BackTop />
                 <FloatButton
@@ -176,7 +177,7 @@ function App() {
                     />
                 </Route>
             </Routes>
-        </BrowserRouter>
+        </HashRouter>
     );
 }
 
