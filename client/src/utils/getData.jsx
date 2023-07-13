@@ -54,7 +54,6 @@ export const GetDoc = (Doc, uid, setDoc) => {
     const unsub = onSnapshot(doc(db, Doc, uid), (doc) => {
         setDoc(doc.data());
     });
-   
 };
 
 export const GetSavedRec = (Doc, uid, setDoc) => {
@@ -62,5 +61,3 @@ export const GetSavedRec = (Doc, uid, setDoc) => {
         setDoc(doc.data());
     });
 };
-
-

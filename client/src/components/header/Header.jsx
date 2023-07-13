@@ -86,6 +86,7 @@ const Header = () => {
         signOut(auth)
             .then(() => {
                 console.log('sign out successful');
+                setShowProfileWidget(false);
                 localStorage.setItem('user', null);
             })
             .catch((error) => {
@@ -205,7 +206,7 @@ const Header = () => {
                             </TippyHeadless>
                         ) : (
                             <li className='link ml-2 mr-2 py-2 px-3 button__login text-slate-50 rounded-md font-semibold header__item'>
-                                <a href='/login'>Log in / Register</a>
+                                <Link to='/login'>Log in / Register</Link>
                             </li>
                         )}
                     </ul>
@@ -217,12 +218,12 @@ const Header = () => {
                         className='p-3 hover:text-main'
                         onClick={() => setShowProfileWidget(false)}
                     >
-                        <a href='#' onClick={renderSideBarWidget}>
+                        <span onClick={renderSideBarWidget}>
                             <FontAwesomeIcon
                                 icon={faBars}
                                 className='text-3xl text-slate-500 hover:text-main'
                             />
-                        </a>
+                        </span>
                     </li>
                     <li>
                         {pathname === '/' || pathname === '/recipes' ? (
@@ -263,12 +264,12 @@ const Header = () => {
                     {!currentUser ? (
                         <Tippy content='Login / Register'>
                             <li className='link ml-2 mr-2 py-2 px-3 button__login  rounded-md font-semibold header__item '>
-                                <a href='/login'>
+                                <Link to='/login'>
                                     <FontAwesomeIcon
                                         icon={faRightToBracket}
                                         className='text-3xl text-slate-500'
                                     />
-                                </a>
+                                </Link>
                             </li>
                         </Tippy>
                     ) : (

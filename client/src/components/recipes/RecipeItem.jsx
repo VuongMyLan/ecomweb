@@ -9,6 +9,7 @@ import {
 import { AuthContext } from 'context/authContext/AuthContext';
 import { GetDoc } from 'utils/getData';
 const RecipeItem = ({ item, savedRecList }) => {
+    console.log('savedRecList', savedRecList);
     const { recipe } = item || {};
     const { currentUser } = useContext(AuthContext);
     const [savedRec, setSaveRec] = useState(false);
@@ -20,6 +21,7 @@ const RecipeItem = ({ item, savedRecList }) => {
                 (item) => item.uri === recipe.uri
             );
             if (findItem.length > 0) {
+				console.log('savedRecList', savedRecList);
                 setSaveRec(true);
             } else {
                 setSaveRec(false);

@@ -17,12 +17,12 @@ import { SearchContext } from 'context/searchContext/SearchContext';
 import ReactLoading from 'react-loading';
 const Product = () => {
     const [productData, setProductData] = useState([]);
-    const [searchResult, setSearchResult] = useState([]);
+    const [searchResult, setSearchResult] = useState();
     const [visibleItems, setVisibleItems] = useState(10);
     const [loading, setLoading] = useState(false);
     const { searchValue, setSearchValue, searchType, setSearchType } =
         useContext(SearchContext);
-    console.log('searchValue', searchValue);
+    console.log('searchResult', searchResult);
     // Load More function
     const loadMore = () => {
         setVisibleItems(visibleItems + 10);
@@ -107,7 +107,7 @@ const Product = () => {
                     <img
                         src='https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/no-product-found.jpg?alt=media&token=d1416d64-e878-45c1-b14d-526b789aac85'
                         alt=''
-						className='h-full w-full object-contain'
+                        className='h-full w-full object-contain'
                     />
                 </div>
             );
