@@ -17,11 +17,11 @@ const SavedRecipesContextProvider = ({ children }) => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        if (currentUser) {
+        if (currentUser?.type === 'Member') {
             GetSavedRec('savedrecipes', currentUser.uid, setData);
         }
     }, []);
-	
+
     return (
         <SavedRecipesContext.Provider value={{ data: data }}>
             {children}

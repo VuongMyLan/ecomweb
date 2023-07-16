@@ -17,21 +17,21 @@ import {
     LinkOutlined,
 } from '@ant-design/icons';
 import CONSTANT_TEXT from 'components/label.js';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
     const rootSubmenuKeys = ['sub1', 'sub2', 'sub4'];
-    const [openKeys, setOpenKeys] = useState(['sub1']);
+    const [openKeys, setOpenKeys] = useState(['']);
 
     function getItem(label, key, icon, children, type) {
         return {
             key,
             icon,
             children,
-            label,
+            label: <Link to={`/footer/${label}`}>{label}</Link>,
             type,
         };
     }
-
     const items = [
         getItem('About us', 'sub1', null, [
             getItem('Support Center', '1'),
@@ -81,8 +81,8 @@ const Footer = () => {
     };
 
     return (
-        <>
-            <div className='footer__container flex p-9 text-slate-600 shadow-xl border-t-2 xl:flex-row flex-col xl: items-center '>
+        <div className='flex flex-col'>
+            <div className='footer__container flex p-9 pb-0 text-slate-600 border-t-2 xl:flex-row flex-col xl:items-center xl:mb-0 '>
                 <div className='footer__social flex flex-col xl:w-1/5 xl:border-r-2'>
                     <div className='m-auto flex justify-center items-center xl:m-0 xl:mb-4'>
                         <img
@@ -123,59 +123,62 @@ const Footer = () => {
                         <p className='font-semibold py-2 xl:text-2xl'>
                             About us
                         </p>
-                        <a href='/' className='py-2'>
+                        <Link to='/footer/Support Center' className='py-2'>
                             Support Center
-                        </a>
-                        <a href='/' className='py-2'>
+                        </Link>
+                        <Link to='/footer/Customer Support' className='py-2'>
                             Customer Support
-                        </a>
-                        <a href='/' className='py-2'>
+                        </Link>
+                        <Link to='/footer/About Team' className='py-2'>
                             About Team
-                        </a>
-                        <a href='/' className='py-2'>
+                        </Link>
+                        <Link to='/footer/Copyright Issue' className='py-2'>
                             Copyright Issue
-                        </a>
+                        </Link>
                     </div>
                     <div className='footer__info lg:flex lg:flex-col lg:w-2/5 lg:text-lg hidden'>
                         <p className='font-semibold py-2 xl:text-2xl'>
                             Our information
                         </p>
-                        <a href='/' className='py-2'>
+                        <Link
+                            to='/footer/Privacy policy update'
+                            className='py-2'
+                        >
                             Privacy policy update
-                        </a>
-                        <a href='/' className='py-2'>
+                        </Link>
+                        <Link to='/footer/Term & conditions' className='py-2'>
                             Term & conditions
-                        </a>
-                        <a href='/' className='py-2'>
+                        </Link>
+                        <Link to='/footer/ Return Policy' className='py-2'>
                             Return Policy
-                        </a>
-                        <a href='/' className='py-2'>
+                        </Link>
+                        <Link to='/footer/Site Map' className='py-2'>
                             Site Map
-                        </a>
+                        </Link>
                     </div>
                     <div className='footer__info lg:flex lg:flex-col lg:w-2/5 lg:text-lg hidden'>
                         <p className='font-semibold py-2 xl:text-2xl'>
                             Community
                         </p>
-                        <a href='/' className='py-2'>
+                        <Link to='/footer/Announcements' className='py-2'>
                             Announcements
-                        </a>
-                        <a href='/' className='py-2'>
+                        </Link>
+                        <Link to='/footer/Discussion Center' className='py-2'>
                             Discussion Center
-                        </a>
-                        <a href='/' className='py-2'>
+                        </Link>
+                        <Link to='/footer/Answer Center' className='py-2'>
                             Answer Center
-                        </a>
-                        <a href='/' className='py-2'>
+                        </Link>
+                        <Link to='/footer/Giving Works' className='py-2'>
                             Giving Works
-                        </a>
+                        </Link>
                     </div>
                     {renderFooter()}
                     <div className='footer__info flex flex-col w-11/12 m-auto text-2xl border-t-2 my-11 pt-5 lg:w-2/5 lg:mt-0 lg:border-0 lg:pt-0 lg:text-lg'>
                         <p className='font-semibold py-2 xl:text-2xl'>
                             Ours Newsletter
                         </p>
-                        <p>
+                        <p className='text-[18px]'>
                             Subscribe to our newsletter and we will inform you
                             about newest directory and promotions
                         </p>
@@ -188,8 +191,15 @@ const Footer = () => {
                         </button>
                     </div>
                 </div>
+
+                <p className='text-right text-slate-400 xl:hidden'>
+                    Copy Right © 2023 Aurora
+                </p>
             </div>
-        </>
+            <p className='text-right text-slate-400 px-9 py-2'>
+                Copy Right © 2023 Aurora
+            </p>
+        </div>
     );
 };
 

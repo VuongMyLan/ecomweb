@@ -12,7 +12,7 @@ const Register = () => {
 
     return (
         <div className='Register__container flex justify-center items-center w-full h-screen bg-loginBackground bg-center bg-no-repeat bg-cover'>
-            <div className='w-[90%] md:w-1/2 h-auto bg-slate-50 rounded-md text-center'>
+            <div className='fixed top-[80px] w-[90%] md:w-1/2 h-auto bg-slate-50 rounded-md text-center'>
                 <div className='h-auto w-11/12 border-b-2 m-auto flex items-center justify-center'>
                     {loginTitle?.map((title, i) => (
                         <button

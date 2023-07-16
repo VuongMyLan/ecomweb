@@ -11,21 +11,23 @@ import CollapseComponent from './Collapse';
 import { GetDoc } from 'utils/getData';
 import { AuthContext } from 'context/authContext/AuthContext';
 import Tippy from '@tippyjs/react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 const ShoppingList = ({ className, setShowShoppingList, setExpand }) => {
-    console.log('setShowShoppingList', setShowShoppingList);
+    const navigate = useNavigate();
     const [shoppingLists, setShoppingList] = useState([]);
     const { currentUser } = useContext(AuthContext);
 
     useEffect(() => {
-        if (currentUser) {
+        if (currentUser.type === 'Member') {
             GetDoc('shoppingLists', currentUser.uid, setShoppingList);
+        } else {
+            navigate('/login');
         }
     }, []);
 
     return (
         <div
-            className={`flex-1 bg-slate-200 rounded-md shopping__list min-w-[600px] ${className} ${
+            className={`flex-1 bg-slate-200 rounded-md shopping__list ${className} ${
                 setShowShoppingList && 'fixed right-0 top-0'
             } ${!setShowShoppingList && 'w-full m-auto'}`}
         >
@@ -65,9 +67,10 @@ const ShoppingList = ({ className, setShowShoppingList, setExpand }) => {
                         </p>
                     )}
                 </div>
-                {Object.values(shoppingLists)?.map((item, i) => (
-                    <CollapseComponent item={item} key={i} />
-                ))}
+                {currentUser.type === 'Member' &&
+                    Object.values(shoppingLists)?.map((item, i) => (
+                        <CollapseComponent item={item} key={i} />
+                    ))}
             </div>
         </div>
     );

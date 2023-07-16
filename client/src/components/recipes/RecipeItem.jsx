@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { HeartOutlined, HeartFilled } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Tippy from '@tippyjs/react';
 import {
     handleAddToSaveRecipes,
@@ -9,11 +9,14 @@ import {
 import { AuthContext } from 'context/authContext/AuthContext';
 import { GetDoc } from 'utils/getData';
 const RecipeItem = ({ item, savedRecList }) => {
-    console.log('savedRecList', savedRecList);
-    const { recipe } = item || {};
+    console.log('item', item);
+    const navigate = useNavigate();
+    const { recipe = '' } = item || {};
     const { currentUser } = useContext(AuthContext);
     const [savedRec, setSaveRec] = useState(false);
-    const recipeID = recipe.uri.split('#')[1];
+    if (recipe) {
+        const recipeID = recipe?.uri?.split('#')[1];
+    }
 
     useEffect(() => {
         if (savedRecList) {
@@ -21,7 +24,7 @@ const RecipeItem = ({ item, savedRecList }) => {
                 (item) => item.uri === recipe.uri
             );
             if (findItem.length > 0) {
-				console.log('savedRecList', savedRecList);
+                console.log('savedRecList', savedRecList);
                 setSaveRec(true);
             } else {
                 setSaveRec(false);
@@ -37,7 +40,14 @@ const RecipeItem = ({ item, savedRecList }) => {
                             onClick={(e) => {
                                 console.log(123);
                                 e.stopPropagation();
-                                handleAddToSaveRecipes(recipe, currentUser.uid);
+                                if (currentUser.type === 'Member') {
+                                    handleAddToSaveRecipes(
+                                        recipe,
+                                        currentUser.uid
+                                    );
+                                } else {
+                                    navigate('/login');
+                                }
                             }}
                         />
                     ) : (

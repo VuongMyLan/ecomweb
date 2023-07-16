@@ -13,7 +13,7 @@ import { CartContext } from 'context/cartContext/cartContext';
 import Button from 'components/button/Button';
 import Product from './Product';
 import Tippy from '@tippyjs/react';
-import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import { useNavigate, useParams, useLocation, Link } from 'react-router-dom';
 import {
     collection,
     doc,
@@ -161,18 +161,16 @@ const ProductDetail = () => {
 
     return (
         <div className='bg-slate-200 text-base z-[51] product__detail'>
-            <span
+            <Link
                 className='absolute top-3 left-3 cursor-pointer hover:text-main'
-                onClick={() => {
-                    navigate(-1);
-                }}
+                to="/"
             >
                 <FontAwesomeIcon
                     icon={faArrowLeftLong}
                     className='text-base  mr-3'
                 />
                 Back
-            </span>
+            </Link>
             <div className='flex flex-col'>
                 <div className='lg:w-11/12 lg:flex m-auto'>
                     <div className='lg:w-1/2 lg:pr-4'>

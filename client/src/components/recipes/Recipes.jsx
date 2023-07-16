@@ -4,7 +4,7 @@ import React, { Fragment, useContext, useEffect, useState } from 'react';
 import { fetchRandom } from 'context/apiCall/ApiCall';
 import CONSTANT_TEXT from 'components/label.js';
 import ReactLoading from 'react-loading';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SearchItem from 'components/search/Search.jsx';
 import RecipeItem from './RecipeItem';
 import { GetSavedRec } from 'utils/getData';
@@ -12,6 +12,12 @@ import { AuthContext } from 'context/authContext/AuthContext';
 import { SavedRecipesContext } from 'context/savedrecContext/SavedRecipesContext';
 import { CaretDownOutlined } from '@ant-design/icons';
 import { SearchContext } from 'context/searchContext/SearchContext';
+import Tippy from '@tippyjs/react';
+import { HeartOutlined, HeartFilled } from '@ant-design/icons';
+import {
+    handleAddToSaveRecipes,
+    removeFromSavedRecipes,
+} from 'utils/handleCart';
 const Recipes = () => {
     const [recipeData, setrecipeData] = useState([]);
     const [dietData, setdietData] = useState([]);
@@ -21,16 +27,20 @@ const Recipes = () => {
     const [showSelection, setShowSelection] = useState(false);
     const { currentUser } = useContext(AuthContext);
     const { data } = useContext(SavedRecipesContext);
-	const {searchValue,setSearchValue} =useContext(SearchContext)
+    const { searchValue, setSearchValue } = useContext(SearchContext);
     const { DIET, MEAL_TYPE } = CONSTANT_TEXT;
+    const [savedRec, setSaveRec] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
-        setSaveRecList(data);
+        if (currentUser.type === 'Member') {
+            setSaveRecList(data);
+        }
     }, [data]);
 
     useEffect(() => {
         const fetchData = async (q) => {
-			setLoading(true);
+    		setLoading(true);
             const result = await fetchRandom(q, null, null, 'true');
             setrecipeData(result);
             setLoading(false);
@@ -39,7 +49,7 @@ const Recipes = () => {
         fetchData('chicken');
         const dietList = [];
         const fetchDietType = async (diet) => {
-			setLoading(true);
+    		setLoading(true);
             const result = await fetchRandom(null, diet, null, 'true');
             const find = await mealTypeData?.find((item) => item.diet === diet);
             if (find) {
@@ -58,7 +68,7 @@ const Recipes = () => {
 
         const mealList = [];
         const fetchMealType = async (mealType) => {
-			setLoading(true);
+    		setLoading(true);
             const result = await fetchRandom(null, null, mealType, 'true');
             const find = mealTypeData?.find(
                 (item) => item.mealType === mealType
@@ -85,11 +95,24 @@ const Recipes = () => {
         });
     }, []);
 
-    console.log('searchValue', searchValue);
-
-  
     const { recipe } =
         (recipeData && recipeData.hits && recipeData.hits[0]) || {};
+    console.log('mealData', mealTypeData.result);
+    console.log('recipe', recipe);
+
+    useEffect(() => {
+        if (savedRecList && currentUser.type === 'Member') {
+            const findItem = Object.values(savedRecList)?.filter(
+                (item) => item.uri === recipe?.uri
+            );
+            if (findItem.length > 0) {
+                console.log('savedRecList', savedRecList);
+                setSaveRec(true);
+            } else {
+                setSaveRec(false);
+            }
+        }
+    }, [currentUser, savedRecList, recipe?.uri]);
 
     return (
         <div className='relative'>
@@ -118,8 +141,11 @@ const Recipes = () => {
                                 <>
                                     <div className='text-center cursor-pointer absolute top-[100%] left-0 bg-slate-50 shadow w-full z-[2]'>
                                         {Object.values(MEAL_TYPE)?.map(
-                                            (item,i) => (
-                                                <p className='hover:text-slate-50 py-2 hover:bg-slate-500 hover:rounded-md' key={i}>
+                                            (item, i) => (
+                                                <p
+                                                    className='hover:text-slate-50 py-2 hover:bg-slate-500 hover:rounded-md'
+                                                    key={i}
+                                                >
                                                     <Link
                                                         to={`/recipes/c/${item}`}
                                                     >
@@ -133,7 +159,7 @@ const Recipes = () => {
                             )}
                         </div>
 
-                        <SearchItem className='mt-[10px] ml-[5px]' />
+                        <SearchItem className='mt-[10px] ml-[5px] hidden xl:flex' />
                     </div>
                     <div className='my-2 p-2'>
                         <div>
@@ -141,38 +167,78 @@ const Recipes = () => {
                                 <p className='text-xl font-bold'>
                                     Featured Recipe
                                 </p>
-                                <p className='cursor-pointer'>View All</p>
                             </div>
-                            <Link
-                                to={`/recipes/${recipe?.uri.split('#')[1]}`}
-                                className='block bg-white rounded-md pb-2 md:flex md:justify-center p-3 '
-                            >
-                                <div className='md:w-[30%] lg:w-[50%] rounded-2xl'>
-                                    <img
-                                        loading='lazy'
-                                        src={recipe && recipe.image}
-                                        alt='recipe'
-                                        className='rounded-2xl object-cover object-center h-full w-full lg:h-[300px]'
-                                    />
-                                </div>
-                                <div className='md:ml-10 md:flex-1'>
-                                    <div className='text-slate-800 font-bold text-xl py-3 flex items-center '>
-                                        <p> {recipe && recipe.label} Ideas</p>
-                                        <span className='bg-yellow-100 p-2 rounded-full text-slate-500 text-sm ml-1'>
-                                            {recipe && recipe.totalTime}m
-                                        </span>
+                            <div className='relative'>
+                                <Tippy content='Saved recipes'>
+                                    <div className='absolute z-[20] right-5 top-5 bg-slate-100 p-2 rounded-full h-[30px] w-[30px] flex  items-center justify-center shadow'>
+                                        {!savedRec ? (
+                                            <HeartOutlined
+                                                onClick={(e) => {
+                                                    console.log(123);
+                                                    e.stopPropagation();
+                                                    if (
+                                                        currentUser.type ===
+                                                        'Member'
+                                                    ) {
+                                                        handleAddToSaveRecipes(
+                                                            recipe,
+                                                            currentUser.uid
+                                                        );
+                                                    } else {
+                                                        navigate('/login');
+                                                    }
+                                                }}
+                                            />
+                                        ) : (
+                                            <HeartFilled
+                                                style={{ color: 'Red' }}
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    removeFromSavedRecipes(
+                                                        recipe,
+                                                        currentUser.uid
+                                                    );
+                                                }}
+                                            />
+                                        )}
+                                    </div>
+                                </Tippy>
+                                <Link
+                                    to={`/recipes/${recipe?.uri.split('#')[1]}`}
+                                    className='block bg-white rounded-md pb-2 md:flex md:justify-center p-3 '
+                                >
+                                    <div className='md:w-[30%] lg:w-[50%] rounded-2xl'>
+                                        <img
+                                            loading='lazy'
+                                            src={recipe && recipe.image}
+                                            alt='recipe'
+                                            className='rounded-2xl object-cover object-center h-full w-full lg:h-[300px]'
+                                        />
                                     </div>
 
-                                    <p className='text-slate-500'>
-                                        Lorem ipsum dolor sit amet consectetur,
-                                        adipisicing elit. Dolor odit, dicta
-                                        laboriosam itaque, corporis esse
-                                        doloremque sequi qui quos at dolorum
-                                        similique consequatur nemo. Autem quod
-                                        deserunt modi facilis at?
-                                    </p>
-                                </div>
-                            </Link>
+                                    <div className='md:ml-10 md:flex-1'>
+                                        <div className='text-slate-800 font-bold text-xl py-3 flex items-center '>
+                                            <p>
+                                                {' '}
+                                                {recipe && recipe.label} Ideas
+                                            </p>
+                                            <span className='bg-yellow-100 p-2 rounded-full text-slate-500 text-sm ml-1'>
+                                                {recipe && recipe.totalTime}m
+                                            </span>
+                                        </div>
+
+                                        <p className='text-slate-500'>
+                                            Lorem ipsum dolor sit amet
+                                            consectetur, adipisicing elit. Dolor
+                                            odit, dicta laboriosam itaque,
+                                            corporis esse doloremque sequi qui
+                                            quos at dolorum similique
+                                            consequatur nemo. Autem quod
+                                            deserunt modi facilis at?
+                                        </p>
+                                    </div>
+                                </Link>
+                            </div>
                         </div>
                         <div>
                             <p className='text-xl font-bold mt-5 mb-2'>
@@ -309,7 +375,7 @@ const Recipes = () => {
                     </div>
                 )}
             </div>
-			{loading && (
+            {loading && (
                 <div className='flex items-center justify-center fixed top-0 bottom-0 right-0 left-0 h-screen w-screen backdrop-opacity-10 backdrop-invert bg-white/30'>
                     <ReactLoading
                         type='spin'

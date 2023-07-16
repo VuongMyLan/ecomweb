@@ -82,15 +82,15 @@ const Checkout = ({ className }) => {
         navigate(`/orders/${orderId}`);
     };
 
-    useEffect(() => {
-        if (cart.length === 0) {
-            navigate('/');
-        }
-    }, []);
+    // useEffect(() => {
+    //     if (cart.length === 0) {
+    //         navigate('/');
+    //     }
+    // }, []);
 
     return (
         <div className={`${className}`}>
-            <Formik
+            {cart.length > 0 && (<Formik
                 onSubmit={onSubmit}
                 initialValues={checkoutInfo}
                 enableReinitialize
@@ -110,7 +110,12 @@ const Checkout = ({ className }) => {
                                             htmlFor='firstname'
                                             className='text-left px-2 text-base '
                                         >
-                                              <p className='flex items-center'><span className='text-red-500 font-bold text-xl mr-1'>* </span>First Name:</p>
+                                            <p className='flex items-center'>
+                                                <span className='text-red-500 font-bold text-xl mr-1'>
+                                                    *{' '}
+                                                </span>
+                                                First Name:
+                                            </p>
                                         </label>
                                         <input
                                             id='firstname'
@@ -144,7 +149,12 @@ const Checkout = ({ className }) => {
                                             htmlFor='lastname'
                                             className='text-left px-2 text-base '
                                         >
-                                             <p className='flex items-center'><span className='text-red-500 font-bold text-xl mr-1'>* </span>Last Name:</p>
+                                            <p className='flex items-center'>
+                                                <span className='text-red-500 font-bold text-xl mr-1'>
+                                                    *{' '}
+                                                </span>
+                                                Last Name:
+                                            </p>
                                         </label>
                                         <input
                                             id='lastname'
@@ -178,7 +188,12 @@ const Checkout = ({ className }) => {
                                             htmlFor='phone'
                                             className='text-left px-2 text-base '
                                         >
-                                             <p className='flex items-center'><span className='text-red-500 font-bold text-xl mr-1'>* </span>Phone Number:</p>
+                                            <p className='flex items-center'>
+                                                <span className='text-red-500 font-bold text-xl mr-1'>
+                                                    *{' '}
+                                                </span>
+                                                Phone Number:
+                                            </p>
                                         </label>
                                         <input
                                             id='phone'
@@ -212,7 +227,12 @@ const Checkout = ({ className }) => {
                                             htmlFor='shippingaddress'
                                             className='text-left px-2 text-base '
                                         >
-                                             <p className='flex items-center'><span className='text-red-500 font-bold text-xl mr-1'>* </span> Shipping Address: </p>
+                                            <p className='flex items-center'>
+                                                <span className='text-red-500 font-bold text-xl mr-1'>
+                                                    *{' '}
+                                                </span>{' '}
+                                                Shipping Address:{' '}
+                                            </p>
                                         </label>
                                         <input
                                             id='shippingaddress'
@@ -342,7 +362,8 @@ const Checkout = ({ className }) => {
                         </div>
                     </Form>
                 )}
-            </Formik>
+            </Formik>)}
+            {cart.length === 0 && <div className='text-center'>No items to checkout</div>}
         </div>
     );
 };

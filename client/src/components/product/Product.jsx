@@ -22,7 +22,6 @@ const Product = () => {
     const [loading, setLoading] = useState(false);
     const { searchValue, setSearchValue, searchType, setSearchType } =
         useContext(SearchContext);
-    console.log('searchResult', searchResult);
     // Load More function
     const loadMore = () => {
         setVisibleItems(visibleItems + 10);
@@ -75,7 +74,6 @@ const Product = () => {
                 .includes(searchValue?.toLowerCase().trim())
         );
 
-        console.log('searchResultArray', searchResultArray);
         if (searchResultArray?.length > 0) {
             setSearchResult(searchResultArray);
         } else {
@@ -124,7 +122,7 @@ const Product = () => {
         if (searchResult?.length > 0) {
             if (searchResult?.length > visibleItems) {
                 return (
-                    <div className='flex items-center justify-center border bg-main text-slate-50 w-[30%] m-auto p-3 text-xl rounded-md mt-4 hover:bg-hovermain cursor-pointer xl:w-[15%]'>
+                    <div className='flex items-center justify-center border bg-main text-slate-50  m-auto p-3 text-xl rounded-md mt-4 hover:bg-hovermain cursor-pointer max-w-[300px]'>
                         <button
                             onClick={() => setVisibleItems(visibleItems + 10)}
                         >
@@ -138,7 +136,7 @@ const Product = () => {
         } else {
             if (productData.length > visibleItems) {
                 return (
-                    <div className='flex items-center justify-center border bg-main text-slate-50 w-[30%] m-auto p-3 text-xl rounded-md mt-4 hover:bg-hovermain cursor-pointer xl:w-[15%]'>
+                    <div className='flex items-center justify-center border bg-main text-slate-50  m-auto p-3 text-xl rounded-md mt-4 hover:bg-hovermain cursor-pointer max-w-[300px]'>
                         <button
                             onClick={() => setVisibleItems(visibleItems + 10)}
                         >

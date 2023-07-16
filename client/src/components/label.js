@@ -17,7 +17,7 @@ const CONSTANT_TEXT = {
             to: '/noti',
         },
         savedrecipes: {
-            title: 'Saved Rcipes',
+            title: 'Saved Recipes',
             to: 'recipes/c/savedrecipes',
         },
     },

@@ -16,7 +16,7 @@ const SidebarWidget = ({
     console.log('showFilter', showFilter);
     return (
         <div
-            className={`${className} w-96 bg-slate-50 h-screen fixed z-50 flex flex-col pt-3 items-center shadow-2xl xl:hidden`}
+            className={`${className} bg-slate-50 h-screen fixed z-50 flex flex-col pt-3 items-center shadow-2xl xl:hidden  max-w-[350px] w-[90%]`}
         >
             {!showFilter ? (
                 <SidebarWidgetItem
@@ -40,7 +40,10 @@ const SidebarWidget = ({
                             />
                         </span>
                     </div>
-                    <Sidebar className="w-[80%] text-xl mt-5" setShowWidget={setShowWidget} />
+                    <Sidebar
+                        className='w-[80%] text-xl mt-5'
+                        setShowWidget={setShowWidget}
+                    />
                 </>
             )}
             {}

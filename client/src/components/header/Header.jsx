@@ -173,7 +173,7 @@ const Header = () => {
                                 </Link>
                             </Tippy>
                         </div>
-                        {currentUser ? (
+                        {currentUser?.type === 'Member' ? (
                             <TippyHeadless
                                 interactive
                                 arrow={true}
@@ -197,7 +197,7 @@ const Header = () => {
                             >
                                 <img
                                     src={
-                                        (currentUser && userInfo.img) ||
+                                        (currentUser && userInfo?.img) ||
                                         'https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/default-avatar.webp?alt=media&token=91818476-3ba0-4c46-8071-d34c96310817'
                                     }
                                     alt=''
@@ -221,22 +221,21 @@ const Header = () => {
                         <span onClick={renderSideBarWidget}>
                             <FontAwesomeIcon
                                 icon={faBars}
-                                className='text-3xl text-slate-500 hover:text-main'
+                                className='text-3xl text-slate-500 hover:text-main cursor-pointer'
                             />
                         </span>
                     </li>
                     <li>
                         {pathname === '/' || pathname === '/recipes' ? (
-                            <a
-                                href='#'
-                                className='inline-block'
+                            <span
+                                className='inline-block cursor-pointer'
                                 onClick={showSearchSm}
                             >
                                 <FontAwesomeIcon
                                     icon={faMagnifyingGlass}
                                     className='text-3xl text-slate-500 hover:text-main'
                                 />
-                            </a>
+                            </span>
                         ) : (
                             <Link to='/' className='cursor-pointer'>
                                 <FontAwesomeIcon
@@ -249,7 +248,10 @@ const Header = () => {
                     <li>
                         <Link to='/cart'>
                             <p className='relative'>
-                                <span href='#' className='h-full inline-block'>
+                                <span
+                                    href='#'
+                                    className='h-full inline-block cursor-pointer'
+                                >
                                     <FontAwesomeIcon
                                         icon={faCartShopping}
                                         className='text-3xl text-slate-500 hover:text-main'
@@ -261,32 +263,32 @@ const Header = () => {
                             </p>
                         </Link>
                     </li>
-                    {!currentUser ? (
-                        <Tippy content='Login / Register'>
-                            <li className='link ml-2 mr-2 py-2 px-3 button__login  rounded-md font-semibold header__item '>
+                    {currentUser?.type === 'NoneMember' ? (
+                        <Tippy content='Log In / Register'>
+                            <li className='link ml-2 mr-2 py-2 px-3 button__login  rounded-md font-semibold header__item'>
                                 <Link to='/login'>
                                     <FontAwesomeIcon
                                         icon={faRightToBracket}
-                                        className='text-3xl text-slate-500'
+                                        className='text-3xl text-slate-500 cursor-pointer hover:text-main'
                                     />
                                 </Link>
                             </li>
                         </Tippy>
                     ) : (
                         <li
-                            className='px-3 py-2'
+                            className=''
                             onClick={() => setShowSideBarWidget(false)}
                         >
-                            <a href='#' onClick={renderProfileWidget}>
+                            <span onClick={renderProfileWidget}>
                                 <img
                                     src={
-                                        (currentUser && userInfo.img) ||
+                                        (currentUser && userInfo?.img) ||
                                         'https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/default-avatar.webp?alt=media&token=91818476-3ba0-4c46-8071-d34c96310817'
                                     }
                                     alt=''
-                                    className='avatar__img m-2 mt-1 rounded-full w-10 h-10 border-2 hover:border-main '
+                                    className='avatar__img m-2 mt-1 rounded-full w-10 h-10 border-2 hover:border-main cursor-pointer '
                                 />
-                            </a>
+                            </span>
                         </li>
                     )}
                 </ul>
@@ -301,7 +303,7 @@ const Header = () => {
                 </a>
             </div>
             {SearchSm && (
-                <SearchItem className='w-100vw px-5 m-2 mt-[80px] mb-[-80px] xl:hidden' />
+                <SearchItem className='my-2 px-5 m-2 mt-[80px] mb-[-80px] xl:hidden' />
             )}
             {showSideBarWidget && (
                 <SidebarWidget

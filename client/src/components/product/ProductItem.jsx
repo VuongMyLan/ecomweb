@@ -8,15 +8,7 @@ import Modal from 'components/modal/Modal';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from 'context/authContext/AuthContext';
 import { handleAddToCart, handleRemoveFromCart } from 'utils/handleCart';
-import {
-    collection,
-    doc,
-    getDocs,
-    onSnapshot,
-    query,
-    where,
-} from 'firebase/firestore';
-import { db, storage } from '../../firebase';
+import { v4 as uuidv4 } from 'uuid';
 const ProductItem = ({ productData }) => {
     const { cart, dispatch } = useContext(CartContext);
     const { currentUser } = useContext(AuthContext);
@@ -75,7 +67,12 @@ const ProductItem = ({ productData }) => {
                         onClick={(e) => {
                             e.stopPropagation();
                             if (!currentUser) {
-                                navigate('/login');
+								const temID = uuidv4()
+                                handleAddToCart(
+                                    productData,
+                                    `NoUser_${temID}`,
+                                    dispatch
+                                );
                             } else {
                                 handleAddToCart(
                                     productData,

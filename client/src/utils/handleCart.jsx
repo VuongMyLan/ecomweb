@@ -196,19 +196,19 @@ export const removeFromWishList = async (product, uid) => {
     });
 };
 
-export const handleAddToSaveRecipes = async (recipe, uid) => {
+export const handleAddToSaveRecipes = async (recipe, uid, type) => {
     const savedRecipesDoc = await doc(db, 'savedrecipes', uid);
     // const cartDoc = await doc(db, 'carts', currentUser.uid);
     const document = await getDoc(doc(db, 'savedrecipes', uid));
     if (!document.data()) {
         await setDoc(doc(db, 'savedrecipes', uid), {
-            [recipe.uri.split('#')[1]]: {
+            [recipe?.uri.split('#')[1]]: {
                 ...recipe,
             },
         });
     } else {
         await updateDoc(savedRecipesDoc, {
-            [recipe.uri.split('#')[1]]: {
+            [recipe?.uri.split('#')[1]]: {
                 ...recipe,
             },
         });
@@ -218,6 +218,6 @@ export const handleAddToSaveRecipes = async (recipe, uid) => {
 export const removeFromSavedRecipes = async (recipe, uid) => {
     const wishlistsDoc = await doc(db, 'savedrecipes', uid);
     await updateDoc(wishlistsDoc, {
-        [recipe.uri.split('#')[1]]: deleteField(),
+        [recipe?.uri.split('#')[1]]: deleteField(),
     });
 };

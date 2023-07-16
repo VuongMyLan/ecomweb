@@ -5,7 +5,7 @@ import { collection, query, where, getDocs } from 'firebase/firestore';
 import { db, storage } from '../../firebase';
 import { doc, getDoc, onSnapshot } from 'firebase/firestore';
 import { AuthContext } from 'context/authContext/AuthContext';
-
+import { v4 as uuidv4 } from 'uuid';
 const Cart = {
     cart: [],
 };
@@ -28,12 +28,7 @@ export const CartContextProvider = ({ children }) => {
                     });
                 }
             );
-        } else {
-			dispatch({
-				type: 'NO USER',
-				payload: [],
-			});
-		}
+        } 
     }, [currentUser, dispatch]);
 
     return (

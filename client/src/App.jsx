@@ -5,6 +5,7 @@ import {
     Outlet,
     Route,
     Routes,
+    useNavigate,
 } from 'react-router-dom';
 import Home from './pages/home/Home';
 import './app.scss';
@@ -32,6 +33,7 @@ import RecipeDetail from 'components/recipes/RecipeDetail';
 import RecipesViewAll from 'components/recipes/RecipesViewAll';
 import { FloatButton } from 'antd';
 import ShoppingList from 'components/shoppingList/ShoppingList';
+import FooterInfo from 'components/footer/FooterInfo';
 
 function App() {
     const { currentUser } = useContext(AuthContext);
@@ -50,14 +52,21 @@ function App() {
             </div>
         </>
     );
-    return (
-        <HashRouter>
+
+    const ShoppingListLayout = () => (
+        <>
             <div className='float__button'>
-                <FloatButton.BackTop />
+                <FloatButton.BackTop
+                    style={{
+                        right: 30,
+                        bottom: 80,
+                    }}
+                />
                 <FloatButton
                     tooltip={<div>Shopping List</div>}
                     style={{
-                        left: 50,
+                        left: 30,
+                        bottom: 80,
                         display: 'flex',
                         justifyContent: 'center',
                     }}
@@ -66,74 +75,87 @@ function App() {
                 />
                 {showShoppingList && (
                     <ShoppingList
-                        className='z-[99999] shadow-lg slidein'
+                        className='z-[99999] shadow-lg slidein min-w-[600px]'
                         setShowShoppingList={setShowShoppingList}
                     />
                 )}
             </div>
+            <Outlet />
+        </>
+    );
+    return (
+        <HashRouter>
             <Routes>
-                <Route exact path='/' element={<Home />} />
                 <Route exact path='/login' element={<Register />} />
-                <Route exact path='/forgetpass' element={<ForgetPassword />} />
-                <Route
-                    exact
-                    path='/resetpassword'
-                    element={<ResetPassword />}
-                />
-                <Route
-                    exact
-                    path='/product/:id'
-                    element={
-                        <RequireAuth>
-                            <ProductDetail />
-                        </RequireAuth>
-                    }
-                />
-                <Route
-                    exact
-                    path='/recipes'
-                    element={
-                        <RequireAuth>
-                            <Recipes />
-                        </RequireAuth>
-                    }
-                />
-                <Route
-                    exact
-                    path='/recipes/:id'
-                    element={
-                        <RequireAuth>
-                            <RecipeDetail />
-                        </RequireAuth>
-                    }
-                />
-                <Route
-                    exact
-                    path='/recipes/c/:id'
-                    element={
-                        <RequireAuth>
-                            <RecipesViewAll />
-                        </RequireAuth>
-                    }
-                />
-                <Route
-                    exact
-                    path='/cart'
-                    element={
-                        <RequireAuth>
-                            <CartPage />
-                        </RequireAuth>
-                    }
-                />
-                <Route
-                    exact
-                    path='/orders/:ordernumber'
-                    element={
-                        <RequireAuth>
-                            <OrderDetail />
-                        </RequireAuth>
-                    }
-                />
+                <Route element={<ShoppingListLayout />}>
+                    <Route exact path='/' element={<Home />} />
+                    <Route
+                        exact
+                        path='/forgetpass'
+                        element={<ForgetPassword />}
+                    />
+                    <Route
+                        exact
+                        path='/resetpassword'
+                        element={<ResetPassword />}
+                    />
+                    <Route
+                        exact
+                        path='/product/:id'
+                        element={
+                            <RequireAuth>
+                                <ProductDetail />
+                            </RequireAuth>
+                        }
+                    />
+                    <Route
+                        exact
+                        path='/recipes'
+                        element={
+                            <RequireAuth>
+                                <Recipes />
+                            </RequireAuth>
+                        }
+                    />
+                    <Route
+                        exact
+                        path='/recipes/:id'
+                        element={
+                            <RequireAuth>
+                                <RecipeDetail />
+                            </RequireAuth>
+                        }
+                    />
+                    <Route
+                        exact
+                        path='/recipes/c/:id'
+                        element={
+                            <RequireAuth>
+                                <RecipesViewAll />
+                            </RequireAuth>
+                        }
+                    />
+                    <Route
+                        exact
+                        path='/cart'
+                        element={
+                            <RequireAuth>
+                                <CartPage />
+                            </RequireAuth>
+                        }
+                    />
+                    <Route
+                        exact
+                        path='/orders/:ordernumber'
+                        element={
+                            <RequireAuth>
+                                <OrderDetail />
+                            </RequireAuth>
+                        }
+                    />
+                    <Route path='/footer/:info' element={<FooterInfo />} />
+                </Route>
+
                 <Route element={<AppLayout />}>
                     <Route
                         path='/profile'
