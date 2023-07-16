@@ -102,56 +102,24 @@ function App() {
                     <Route
                         exact
                         path='/product/:id'
-                        element={
-                            <RequireAuth>
-                                <ProductDetail />
-                            </RequireAuth>
-                        }
+                        element={<ProductDetail />}
                     />
-                    <Route
-                        exact
-                        path='/recipes'
-                        element={
-                            <RequireAuth>
-                                <Recipes />
-                            </RequireAuth>
-                        }
-                    />
+                    <Route exact path='/recipes' element={<Recipes />} />
                     <Route
                         exact
                         path='/recipes/:id'
-                        element={
-                            <RequireAuth>
-                                <RecipeDetail />
-                            </RequireAuth>
-                        }
+                        element={<RecipeDetail />}
                     />
                     <Route
                         exact
                         path='/recipes/c/:id'
-                        element={
-                            <RequireAuth>
-                                <RecipesViewAll />
-                            </RequireAuth>
-                        }
+                        element={<RecipesViewAll />}
                     />
-                    <Route
-                        exact
-                        path='/cart'
-                        element={
-                            <RequireAuth>
-                                <CartPage />
-                            </RequireAuth>
-                        }
-                    />
+                    <Route exact path='/cart' element={<CartPage />} />
                     <Route
                         exact
                         path='/orders/:ordernumber'
-                        element={
-                            <RequireAuth>
-                                <OrderDetail />
-                            </RequireAuth>
-                        }
+                        element={<OrderDetail />}
                     />
                     <Route path='/footer/:info' element={<FooterInfo />} />
                 </Route>
@@ -168,9 +136,7 @@ function App() {
                     <Route
                         path='/order'
                         element={
-                            <RequireAuth>
-                                <Order className='flex-1 bg-slate-200 mx-auto p-2 lg:px-[100px]' />
-                            </RequireAuth>
+                            <Order className='flex-1 bg-slate-200 mx-auto p-2 lg:px-[100px]' />
                         }
                     />
                     <Route
@@ -184,9 +150,7 @@ function App() {
                     <Route
                         path='/checkout'
                         element={
-                            <RequireAuth>
-                                <Checkout className='flex-1 bg-slate-200 mx-auto p-2 lg:px-[100px]' />
-                            </RequireAuth>
+                            <Checkout className='flex-1 bg-slate-200 mx-auto p-2 lg:px-[100px]' />
                         }
                     />
                     <Route

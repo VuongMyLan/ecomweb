@@ -3,7 +3,7 @@ import { fetchRandom } from 'context/apiCall/ApiCall';
 import React, { useContext, useEffect, useState } from 'react';
 import RecipeItem from './RecipeItem';
 import Footer from 'components/footer/Footer';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { AuthContext } from 'context/authContext/AuthContext';
 import CONSTANT_TEXT from 'components/label.js';
 import { SavedRecipesContext } from 'context/savedrecContext/SavedRecipesContext';
@@ -12,7 +12,7 @@ import ReactLoading from 'react-loading';
 const RecipesViewAll = () => {
     const { DIET, MEAL_TYPE } = CONSTANT_TEXT;
     const params = useParams();
-
+    const nagivate = useNavigate();
     const [viewAllData, setViewAllData] = useState([]);
     const [savedRecList, setSaveRecList] = useState([]);
     const [searchRecipe, setSearchRecipe] = useState([]);
@@ -33,15 +33,17 @@ const RecipesViewAll = () => {
             const result = await fetchRandom(null, params.id, null, false);
             setViewAllData(result);
         }
-        if (params.id === 'savedrecipes') {
+        if (params.id === 'savedrecipes' && currentUser.type === 'Member') {
             setViewAllData({});
+        } else {
+            nagivate('/login');
         }
 
         if (params.id === 'search') {
             const result = await fetchRandom(searchValue, null, null, false);
             console.log('result', result);
             setSearchRecipe(result);
-			setViewAllData({});
+            setViewAllData({});
         }
         setLoading(false);
     };
@@ -128,7 +130,9 @@ const RecipesViewAll = () => {
             )}
 
             {params.id === 'search' && searchRecipe.length === 0 && (
-                <div className='text-center text-3xl text-main p-5'>No recipes are found</div>
+                <div className='text-center text-3xl text-main p-5'>
+                    No recipes are found
+                </div>
             )}
             <Footer />
             {loading && (
