@@ -12,7 +12,7 @@ const Carousel = () => {
                 className='carousel__banner object-contain w-full h-full xl:object-cover'
             />
             <div className='carousel__search flex items-center justify-center flex-col bg-clip-text w-[80%] m-auto p-2'>
-                <span className='lg:text-3xl xl:mb-7 mb-3 font-semibold drop-shadow-2xl text-center sm:text-left text-2xl'>
+                <span className='lg:text-[40px] xl:mb-7 mb-3 font-semibold drop-shadow-2xl text-center sm:text-left text-2xl'>
                     Groceries Delivered In Your Doorsteps
                 </span>
                 <span className='text-center mb-7 font-medium shadow-2 text-xs md:text-sm bg-slate-100 px-3 rounded-md py-1'>

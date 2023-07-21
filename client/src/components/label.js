@@ -6,7 +6,7 @@ const CONSTANT_TEXT = {
         },
         groceryStore: {
             title: 'Store',
-            to: '/recipes',
+            to: '/',
         },
         offer: {
             title: 'Offer',

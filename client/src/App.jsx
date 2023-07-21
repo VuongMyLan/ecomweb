@@ -40,7 +40,11 @@ function App() {
     const [showShoppingList, setShowShoppingList] = useState(false);
     // console.log('currentUser', currentUser);
     const RequireAuth = ({ children }) => {
-        return currentUser ? children : <Navigate to='/login' />;
+        return currentUser.type === 'Member' ? (
+            children
+        ) : (
+            <Navigate to='/login' />
+        );
     };
 
     const AppLayout = () => (

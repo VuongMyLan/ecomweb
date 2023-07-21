@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import images from 'assets/img';
 import { Field, Form, Formik, FormikProps } from 'formik';
 import * as yup from 'yup';
@@ -18,7 +18,13 @@ const LoginForm = () => {
     });
 
     //get user from AuthContext
-    const { value } = useContext(AuthContext);
+    const { currentUser } = useContext(AuthContext);
+
+    useEffect(() => {
+        if (currentUser.type === 'Member') {
+            navigate('/');
+        }
+    }, []);
 
     const onSubmit = async (values, action) => {
         signInWithEmailAndPassword(auth, values.email, values.password)
@@ -59,7 +65,12 @@ const LoginForm = () => {
                                             htmlFor='email'
                                             className='text-left px-2 text-base '
                                         >
-                                               <p className='flex items-center'><span className='text-red-500 font-bold text-xl mr-1'>* </span>Email:</p>
+                                            <p className='flex items-center'>
+                                                <span className='text-red-500 font-bold text-xl mr-1'>
+                                                    *{' '}
+                                                </span>
+                                                Email:
+                                            </p>
                                         </label>
                                         <input
                                             id='email'
@@ -92,7 +103,12 @@ const LoginForm = () => {
                                         htmlFor='password'
                                         className='text-left px-2 text-base '
                                     >
-                                           <p className='flex items-center'><span className='text-red-500 font-bold text-xl mr-1'>* </span>Password:</p>
+                                        <p className='flex items-center'>
+                                            <span className='text-red-500 font-bold text-xl mr-1'>
+                                                *{' '}
+                                            </span>
+                                            Password:
+                                        </p>
                                     </label>
                                     <input
                                         id='password'
@@ -115,10 +131,10 @@ const LoginForm = () => {
                                             Wrong email or password
                                         </p>
                                     )}
-                                    <Link to="/forgetpass">
-                                    	<span className='text-right text-sm text-blue-500 cursor-pointer underline mt-[1px]'>
-	                                        Forget password?
-	                                    </span>
+                                    <Link to='/forgetpass'>
+                                        <span className='text-right text-sm text-blue-500 cursor-pointer underline mt-[1px]'>
+                                            Forget password?
+                                        </span>
                                     </Link>
                                 </div>
                             )}
