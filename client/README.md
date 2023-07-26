@@ -1,70 +1,119 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#  Ecommerce Groceries and Recipes Website
 
-## Available Scripts
+Welcome to My React Project! This is a website where you can shop favourite groceries and find recipes for your meals
 
-In the project directory, you can run:
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Demo
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+You can find link demo here:
+https://auroralan.netlify.app/
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Tech Stack
 
-### `npm run build`
+**Client:** React, HTML/CSS, TailwindCSS, Ant Design library,
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Server:** Firebase (Authentication), Cloud Firestore, Firebase Storage
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## API Reference
+URL: https://api.edamam.com
 
-### `npm run eject`
+I use public API for: 
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+#### Search recipes
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```http
+  GET /api/recipes/v2
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `app_id` | `string` | **Required**. Your application ID |
+| `api_key` | `string` | **Required**. Your API key |
 
-## Learn More
+#### Get item
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```http
+  GET /api/items/${id}
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `app_id` | `string` | **Required**. Your application ID |
+| `api_key` | `string` | **Required**. Your API key |
+| `id`      | `string` | **Required**. Id of item to fetch |
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Features
 
-### Making a Progressive Web App
+- Sign up / Log in
+- Forget Password and Reset Password
+- Update, add, delete products in shopping cart
+- Filter products based on categories
+- See detail of Product in Product detail Page
+- Checkout and Order products
+- Check orders stage in order detail Page
+- Update user's profile 
+- Search Recipes 
+- Add recipes to favourite recipes
+- Add ingredients to shopping lists
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Installation
 
-### Deployment
+Clone repository from GitHub 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```bash
+ git clone https://github.com/VuongMyLan/ecomweb.git
+```
+    
+Install node modules
 
-### `npm run build` fails to minify
+```bash
+ npm install
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+ Build application
+
+```bash
+ npm start
+```
+
+Document depencies
+- Because the project use Firebase so that the project requires Firebase integration and list the necessary steps for other users to set it up.
+
+```bash
+ 1. Go to firebase console: https://console.firebase.google.com/ to create a project and following the necessary steps.
+ 2. create a firebase.js and initialize firebase to your project
+```
+
+
+
+## Screenshots
+
+Home Page
+
+![App Screenshot](https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/readme%2FHomePage.png?alt=media&token=dfea4849-752d-4871-b181-b6f607fea824)
+
+Product Detail Page
+![App Screenshot](https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/readme%2FProductDetailPage.png?alt=media&token=40b33933-6651-42c4-a9c1-9417b8403fa9)
+
+Log In Page
+![App Screenshot](https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/readme%2FLog%20In%20Page.png?alt=media&token=7a5f4fa7-2033-49a8-8e34-2130103bdc58)
+
+Recipes Search Page
+![App Screenshot](https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/readme%2FRecipesSearch.png?alt=media&token=85ad3b40-8826-4a4b-8b49-efe5a6097f28)
+
+Shopping Cart Page
+![App Screenshot](https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/readme%2FCart%20Page.png?alt=media&token=db165f5a-79db-4d8d-9f3f-18d273f02dd2)
+## Authors
+
+- [Vuong My Lan - Aurora](https://github.com/VuongMyLan)
+
