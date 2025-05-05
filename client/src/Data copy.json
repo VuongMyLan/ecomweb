@@ -1,0 +1,492 @@
+[
+    {
+        "id": 1,
+        "name": "Apples",
+        "originalprice": 2.2,
+        "promotionprice": 2,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Ffruits%2FApples%20(2).jpg?alt=media&token=bfb0aa99-3a59-4124-8f00-91b27228af0f",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Fruits & Vegetables", "Fruits"],
+        "desc": "An apple is a sweet, edible fruit produced by an apple tree (Malus domestica). Apple trees are ... The skin of ripe apples is generally red, yellow, green, pink, or russetted, though many bi- or tri-colored cultivars may be found."
+    },
+
+    {
+        "id": 2,
+        "name": "Dates",
+        "originalprice": 12.3,
+        "promotionprice": 10.4,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Ffruits%2FDates%20(1).jpg?alt=media&token=bc1d2494-aa01-4abb-8b50-20bb3fb4eb11",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Fruits & Vegetables", "Fruits"],
+        "desc": "An apple is a sweet, edible fruit produced by an apple tree (Malus domestica). Apple trees are ... The skin of ripe apples is generally red, yellow, green, pink, or russetted, though many bi- or tri-colored cultivars may be found."
+    },
+    {
+        "id": 3,
+        "name": "Mangoes",
+        "originalprice": 18.5,
+        "promotionprice": 2,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Ffruits%2FMangoes%20(1).jpg?alt=media&token=47fc752c-9cb0-4eaf-8a80-715f4f3701f8",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Fruits & Vegetables", "Fruits"],
+        "desc": "An apple is a sweet, edible fruit produced by an apple tree (Malus domestica). Apple trees are ... The skin of ripe apples is generally red, yellow, green, pink, or russetted, though many bi- or tri-colored cultivars may be found."
+    },
+    {
+        "id": 4,
+        "name": "Red Cherries",
+        "originalprice": 18.5,
+        "promotionprice": 2,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Ffruits%2FRedCherries%20(1).jpg?alt=media&token=f65713a6-58d4-4991-9592-23eee1d4159c",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Fruits & Vegetables", "Fruits"],
+        "desc": "An apple is a sweet, edible fruit produced by an apple tree (Malus domestica). Apple trees are ... The skin of ripe apples is generally red, yellow, green, pink, or russetted, though many bi- or tri-colored cultivars may be found."
+    },
+    {
+        "id": 5,
+        "name": "Yello Lemon",
+        "originalprice": 18.5,
+        "promotionprice": 2,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Ffruits%2FYellow-Limes%20(1).jpg?alt=media&token=5a4315e6-60e4-4dcd-8ffe-6031c5ec2d31",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Fruits & Vegetables", "Fruits"],
+        "desc": "An apple is a sweet, edible fruit produced by an apple tree (Malus domestica). Apple trees are ... The skin of ripe apples is generally red, yellow, green, pink, or russetted, though many bi- or tri-colored cultivars may be found."
+    },
+
+    {
+        "id": 6,
+        "name": "Blueberries",
+        "originalprice": 3.2,
+        "promotionprice": 2,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Ffruits%2Fblueberries%20(1).jpg?alt=media&token=523f20c7-6009-45eb-92a4-bf0f2c433f11",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Fruits & Vegetables", "Fruits"],
+        "desc": "An apple is a sweet, edible fruit produced by an apple tree (Malus domestica). Apple trees are ... The skin of ripe apples is generally red, yellow, green, pink, or russetted, though many bi- or tri-colored cultivars may be found."
+    },
+
+    {
+        "id": 7,
+        "name": "Clementines",
+        "originalprice": 7.82,
+        "promotionprice": 5.6,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Ffruits%2Fclementines%20(1).jpg?alt=media&token=439e5bbb-d83e-4157-92ec-5f7d749b534b",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Fruits & Vegetables", "Fruits"],
+        "desc": "An apple is a sweet, edible fruit produced by an apple tree (Malus domestica). Apple trees are ... The skin of ripe apples is generally red, yellow, green, pink, or russetted, though many bi- or tri-colored cultivars may be found."
+    },
+
+    {
+        "id": 8,
+        "name": "Pears",
+        "originalprice": 6.8,
+        "promotionprice": 4.5,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Ffruits%2Fpears%20(1).jpg?alt=media&token=f9ec17f2-52b3-4beb-ac54-888f89facc39",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Fruits & Vegetables", "Fruits"],
+        "desc": "An apple is a sweet, edible fruit produced by an apple tree (Malus domestica). Apple trees are ... The skin of ripe apples is generally red, yellow, green, pink, or russetted, though many bi- or tri-colored cultivars may be found."
+    },
+
+    {
+        "id": 9,
+        "name": "Strawberries",
+        "originalprice": 12.3,
+        "promotionprice": 10.4,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Ffruits%2Fstrawberry%20(1).jpg?alt=media&token=4e5f3359-4c5d-4d6d-82ac-7625f4969b37",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Fruits & Vegetables", "Fruits"],
+        "desc": "An apple is a sweet, edible fruit produced by an apple tree (Malus domestica). Apple trees are ... The skin of ripe apples is generally red, yellow, green, pink, or russetted, though many bi- or tri-colored cultivars may be found."
+    },
+    {
+        "id": 10,
+        "name": "BrusselsSprouts",
+        "originalprice": 12.3,
+        "promotionprice": 10.4,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Fvegetables%2FBrusselsSprouts%20(1).jpg?alt=media&token=513d6b32-a420-458e-9f5d-6fe957939564",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Fruits & Vegetables", "Vegetables"],
+        "desc": "An apple is a sweet, edible fruit produced by an apple tree (Malus domestica). Apple trees are ... The skin of ripe apples is generally red, yellow, green, pink, or russetted, though many bi- or tri-colored cultivars may be found."
+    },
+    {
+        "id": 11,
+        "name": "CelerySticks",
+        "originalprice": 12.3,
+        "promotionprice": 10.4,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Fvegetables%2FCelerySticks.jpg?alt=media&token=4e9db8e7-dc26-41de-9e46-c9431f4ba6fc",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Fruits & Vegetables", "Vegetables"],
+        "desc": "An apple is a sweet, edible fruit produced by an apple tree (Malus domestica). Apple trees are ... The skin of ripe apples is generally red, yellow, green, pink, or russetted, though many bi- or tri-colored cultivars may be found."
+    },
+    {
+        "id": 12,
+        "name": "Corn",
+        "originalprice": 12.3,
+        "promotionprice": 10.4,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Fvegetables%2FCorn%20(1).jpg?alt=media&token=2b4e1f5a-59f9-4353-91c5-d1ab1994b73c",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Fruits & Vegetables", "Vegetables"],
+        "desc": "An apple is a sweet, edible fruit produced by an apple tree (Malus domestica). Apple trees are ... The skin of ripe apples is generally red, yellow, green, pink, or russetted, though many bi- or tri-colored cultivars may be found."
+    },
+    {
+        "id": 13,
+        "name": "Cucumber",
+        "originalprice": 12.3,
+        "promotionprice": 10.4,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Fvegetables%2FCucumber%20(1).jpg?alt=media&token=6f3f4490-b60c-420d-8c41-e3bd7cb3c796",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Fruits & Vegetables", "Vegetables"],
+        "desc": "An apple is a sweet, edible fruit produced by an apple tree (Malus domestica). Apple trees are ... The skin of ripe apples is generally red, yellow, green, pink, or russetted, though many bi- or tri-colored cultivars may be found."
+    },
+    {
+        "id": 14,
+        "name": "GreenBeans",
+        "originalprice": 12.3,
+        "promotionprice": 10.4,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Fvegetables%2FGreenBeans.jpg?alt=media&token=32f90d83-8f54-447c-a438-3e208a2037a4",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Fruits & Vegetables", "Vegetables"],
+        "desc": "An apple is a sweet, edible fruit produced by an apple tree (Malus domestica). Apple trees are ... The skin of ripe apples is generally red, yellow, green, pink, or russetted, though many bi- or tri-colored cultivars may be found."
+    },
+    {
+        "id": 15,
+        "name": "GreenLimes",
+        "originalprice": 12.3,
+        "promotionprice": 10.4,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Fvegetables%2FGreenLimes%20(1).jpg?alt=media&token=7a24350c-2035-46a8-86fe-feab71cdbb90",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Fruits & Vegetables", "Vegetables"],
+        "desc": "An apple is a sweet, edible fruit produced by an apple tree (Malus domestica). Apple trees are ... The skin of ripe apples is generally red, yellow, green, pink, or russetted, though many bi- or tri-colored cultivars may be found."
+    },
+    {
+        "id": 16,
+        "name": "MiniPeppers",
+        "originalprice": 12.3,
+        "promotionprice": 10.4,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Fvegetables%2FMiniPeppers%20(1).jpg?alt=media&token=16e0459b-ee16-4c0b-894a-f3611b796552",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Fruits & Vegetables", "Vegetables"],
+        "desc": "An apple is a sweet, edible fruit produced by an apple tree (Malus domestica). Apple trees are ... The skin of ripe apples is generally red, yellow, green, pink, or russetted, though many bi- or tri-colored cultivars may be found."
+    },
+    {
+        "id": 17,
+        "name": "Peeled-Carrots",
+        "originalprice": 12.3,
+        "promotionprice": 10.4,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Fvegetables%2FPeeled-Carrots%20(1).jpg?alt=media&token=7ebd85a1-0a87-40a4-bd7d-8370f302c2dd",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Fruits & Vegetables", "Vegetables"],
+        "desc": "An apple is a sweet, edible fruit produced by an apple tree (Malus domestica). Apple trees are ... The skin of ripe apples is generally red, yellow, green, pink, or russetted, though many bi- or tri-colored cultivars may be found."
+    },
+    {
+        "id": 18,
+        "name": "VeggiePlatter",
+        "originalprice": 12.3,
+        "promotionprice": 10.4,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Fvegetables%2FVeggiePlatter%20(1).jpg?alt=media&token=1822e55b-115a-4b52-b6af-bf6d71590f0c",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Fruits & Vegetables", "Vegetables"],
+        "desc": "An apple is a sweet, edible fruit produced by an apple tree (Malus domestica). Apple trees are ... The skin of ripe apples is generally red, yellow, green, pink, or russetted, though many bi- or tri-colored cultivars may be found."
+    },
+    {
+        "id": 19,
+        "name": "Beef",
+        "originalprice": 12.3,
+        "promotionprice": 10.4,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Fmeat%2Fbeef_xkxhnb.jpg?alt=media&token=bba8ced1-7307-4d5f-a828-52a41f6b107c",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Meat & Fish", "Meat"],
+        "desc": "An apple is a sweet, edible fruit produced by an apple tree (Malus domestica). Apple trees are ... The skin of ripe apples is generally red, yellow, green, pink, or russetted, though many bi- or tri-colored cultivars may be found."
+    },
+    {
+        "id": 20,
+        "name": "Chicken Breast",
+        "originalprice": 12.3,
+        "promotionprice": 10.4,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Fmeat%2Fbeef_xkxhnb.jpg?alt=media&token=bba8ced1-7307-4d5f-a828-52a41f6b107c",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Meat & Fish", "Meat"],
+        "desc": "An apple is a sweet, edible fruit produced by an apple tree (Malus domestica). Apple trees are ... The skin of ripe apples is generally red, yellow, green, pink, or russetted, though many bi- or tri-colored cultivars may be found."
+    },
+    {
+        "id": 21,
+        "name": "Chicken Thigh",
+        "originalprice": 12.3,
+        "promotionprice": 10.4,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Fmeat%2Fchicken_thigh_yrdfwh.jpg?alt=media&token=6e650d8a-aa50-4b8f-881d-6af99bccdf97",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Meat & Fish", "Meat"],
+        "desc": "An apple is a sweet, edible fruit produced by an apple tree (Malus domestica). Apple trees are ... The skin of ripe apples is generally red, yellow, green, pink, or russetted, though many bi- or tri-colored cultivars may be found."
+    },
+    {
+        "id": 22,
+        "name": "Sliced Turkey Breast",
+        "originalprice": 12.3,
+        "promotionprice": 10.4,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Fmeat%2Fchicken_thigh_yrdfwh.jpg?alt=media&token=6e650d8a-aa50-4b8f-881d-6af99bccdf97",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Meat & Fish", "Meat"],
+        "desc": "An apple is a sweet, edible fruit produced by an apple tree (Malus domestica). Apple trees are ... The skin of ripe apples is generally red, yellow, green, pink, or russetted, though many bi- or tri-colored cultivars may be found."
+    },
+    {
+        "id": 22,
+        "name": "Steak",
+        "originalprice": 12.3,
+        "promotionprice": 10.4,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Fmeat%2Fsteak_okxpjo.jpg?alt=media&token=e2830cc4-ebee-4f73-8e4b-cd2d056197fa",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Meat & Fish", "Meat"],
+        "desc": "An apple is a sweet, edible fruit produced by an apple tree (Malus domestica). Apple trees are ... The skin of ripe apples is generally red, yellow, green, pink, or russetted, though many bi- or tri-colored cultivars may be found."
+    },
+    {
+        "id": 23,
+        "name": "Signature Salmon",
+        "originalprice": 12.3,
+        "promotionprice": 10.4,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Ffish%2FSignatureSalmon_fstp4m.jpg?alt=media&token=f3162322-5449-46a2-b47b-c7ee628faa87",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Meat & Fish", "Fish"],
+        "desc": "An apple is a sweet, edible fruit produced by an apple tree (Malus domestica). Apple trees are ... The skin of ripe apples is generally red, yellow, green, pink, or russetted, though many bi- or tri-colored cultivars may be found."
+    },
+    {
+        "id": 24,
+        "name": "Tilapia Fillet",
+        "originalprice": 12.3,
+        "promotionprice": 10.4,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Ffish%2FTilapiaFillet_a2urhk.jpg?alt=media&token=8fe6d808-398f-43d5-8a91-279d6e11dcd6",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Meat & Fish", "Fish"],
+        "desc": "An apple is a sweet, edible fruit produced by an apple tree (Malus domestica). Apple trees are ... The skin of ripe apples is generally red, yellow, green, pink, or russetted, though many bi- or tri-colored cultivars may be found."
+    },
+    {
+        "id": 25,
+        "name": "Cod Fillet",
+        "originalprice": 12.3,
+        "promotionprice": 10.4,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Ffish%2Fcodfillet_u0mti1.jpg?alt=media&token=a814fc90-77f3-47f6-817b-70bceba15293",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Meat & Fish", "Fish"],
+        "desc": "An apple is a sweet, edible fruit produced by an apple tree (Malus domestica). Apple trees are ... The skin of ripe apples is generally red, yellow, green, pink, or russetted, though many bi- or tri-colored cultivars may be found."
+    },
+    {
+        "id": 26,
+        "name": "Halibut",
+        "originalprice": 12.3,
+        "promotionprice": 10.4,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Ffish%2Fhalibut_jaz7ju.jpg?alt=media&token=12e92a11-a2c6-4f24-8ec1-c95489f3a658",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Meat & Fish", "Fish"],
+        "desc": "An apple is a sweet, edible fruit produced by an apple tree (Malus domestica). Apple trees are ... The skin of ripe apples is generally red, yellow, green, pink, or russetted, though many bi- or tri-colored cultivars may be found."
+    },
+    {
+        "id": 27,
+        "name": "Swordfish",
+        "originalprice": 12.3,
+        "promotionprice": 10.4,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Ffish%2Fswordfish_smniuv.jpg?alt=media&token=e9bdd252-829d-4fa3-851b-a9cd44f6f73a",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Meat & Fish", "Fish"],
+        "desc": "An apple is a sweet, edible fruit produced by an apple tree (Malus domestica). Apple trees are ... The skin of ripe apples is generally red, yellow, green, pink, or russetted, though many bi- or tri-colored cultivars may be found."
+    },
+    {
+        "id": 28,
+        "name": "Simply Natural Fruits And Nuts",
+        "originalprice": 12.3,
+        "promotionprice": 10.4,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Fnuts%20and%20biscuits%2FFruits-And-Nuts-Full-Meal-Bottle-Front.jpg?alt=media&token=a67259e4-a68e-4725-bea3-1cdf9ce15da1",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Snack", "Nut & Biscuits"],
+        "desc": "A biscuit is a flour-based baked food product. This article covers the type of biscuit found in Africa, Asia, and Europe, which is typically hard, flat, and unleavened."
+    },
+    {
+        "id": 29,
+        "name": "Snikers Slice",
+        "originalprice": 12.3,
+        "promotionprice": 10.4,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Fnuts%20and%20biscuits%2FFruits-And-Nuts-Full-Meal-Packet.jpg?alt=media&token=5cea3282-858c-4140-8855-e7ba09f33993",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Snack", "Chocolates"],
+        "desc": "A biscuit is a flour-based baked food product. This article covers the type of biscuit found in Africa, Asia, and Europe, which is typically hard, flat, and unleavened."
+    },
+    {
+        "id": 30,
+        "name": "Hill Mini Pack Mix",
+        "originalprice": 12.3,
+        "promotionprice": 10.4,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Fnuts%20and%20biscuits%2FHill_Biscuits_Mini_Pack_Mix_.jpg?alt=media&token=eb7ffdfe-c8c8-469d-b6ff-93e530869d9f",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Snack", "Nut & Biscuits"],
+        "desc": "A biscuit is a flour-based baked food product. This article covers the type of biscuit found in Africa, Asia, and Europe, which is typically hard, flat, and unleavened."
+    },
+    {
+        "id": 31,
+        "name": "Jammie Dodgers Raspberry",
+        "originalprice": 12.3,
+        "promotionprice": 10.4,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Fnuts%20and%20biscuits%2FJammie_Dodgers.jpg?alt=media&token=5c8b4b48-0941-4488-849a-dcda579380eb",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Snack", "Nut & Biscuits"],
+        "desc": "A biscuit is a flour-based baked food product. This article covers the type of biscuit found in Africa, Asia, and Europe, which is typically hard, flat, and unleavened."
+    },
+    {
+        "id": 42,
+        "name": "Badia Pine Nuts",
+        "originalprice": 12.3,
+        "promotionprice": 10.4,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Fnuts%20and%20biscuits%2Fbadia_pinenuts.jpg?alt=media&token=3562270d-e4cb-4960-bc01-71c6701df31d",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Snack", "Nut & Biscuits"],
+        "desc": "A biscuit is a flour-based baked food product. This article covers the type of biscuit found in Africa, Asia, and Europe, which is typically hard, flat, and unleavened."
+    },
+    {
+        "id": 32,
+        "name": "Cacao Cashew Nuts",
+        "originalprice": 12.3,
+        "promotionprice": 10.4,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Fnuts%20and%20biscuits%2Fbadia_pinenuts.jpg?alt=media&token=3562270d-e4cb-4960-bc01-71c6701df31d",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Snack", "Nut & Biscuits"],
+        "desc": "A biscuit is a flour-based baked food product. This article covers the type of biscuit found in Africa, Asia, and Europe, which is typically hard, flat, and unleavened."
+    },
+    {
+        "id": 33,
+        "name": "Crawford Digestives",
+        "originalprice": 12.3,
+        "promotionprice": 10.4,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Fnuts%20and%20biscuits%2Fcrawford_digestives.jpg?alt=media&token=d1c6f97c-f2ae-4f86-91dc-f652117d3e74",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Snack", "Nut & Biscuits"],
+        "desc": "A biscuit is a flour-based baked food product. This article covers the type of biscuit found in Africa, Asia, and Europe, which is typically hard, flat, and unleavened."
+    },
+    {
+        "id": 34,
+        "name": "Crawford Shortie",
+        "originalprice": 12.3,
+        "promotionprice": 10.4,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Fnuts%20and%20biscuits%2Fcrawford_shortie.jpg?alt=media&token=f778db2f-03ab-4673-966f-98d5d54ef75a",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Snack", "Nut & Biscuits"],
+        "desc": "A biscuit is a flour-based baked food product. This article covers the type of biscuit found in Africa, Asia, and Europe, which is typically hard, flat, and unleavened."
+    },
+    {
+        "id": 35,
+        "name": "Fisher Peanuts Ready Salted",
+        "originalprice": 12.3,
+        "promotionprice": 10.4,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Fnuts%20and%20biscuits%2Ffisher_peanut.jpg?alt=media&token=953a4ccf-c1ff-4492-9482-50eddbedab37",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Snack", "Nut & Biscuits"],
+        "desc": "A biscuit is a flour-based baked food product. This article covers the type of biscuit found in Africa, Asia, and Europe, which is typically hard, flat, and unleavened."
+    },
+    {
+        "id": 36,
+        "name": "Ivory Cashew Nuts",
+        "originalprice": 12.3,
+        "promotionprice": 10.4,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Fnuts%20and%20biscuits%2Fivory_cashewnut.jpg?alt=media&token=ea0904e2-4ddc-4a5d-ab6e-cd45ae400fe5",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Snack", "Nut & Biscuits"],
+        "desc": "A biscuit is a flour-based baked food product. This article covers the type of biscuit found in Africa, Asia, and Europe, which is typically hard, flat, and unleavened."
+    },
+
+    {
+        "id": 37,
+        "name": "Jaybees Whole Cashew Nuts",
+        "originalprice": 12.3,
+        "promotionprice": 10.4,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Fnuts%20and%20biscuits%2Fjaybee_whole_cashewnut.jpg?alt=media&token=8aac4e32-8e15-42b3-9921-9c3562aa149f",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Snack", "Nut & Biscuits"],
+        "desc": "A biscuit is a flour-based baked food product. This article covers the type of biscuit found in Africa, Asia, and Europe, which is typically hard, flat, and unleavened."
+    },
+    {
+        "id": 42,
+        "name": "Filipinos",
+        "originalprice": 12.3,
+        "promotionprice": 10.4,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Fchocolates%2Fartiach_filipino%20(1).jpg?alt=media&token=65002305-5203-4600-967d-4b3c096a47d6",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Snack", "Chocolates"],
+        "desc": "Chocolate is a usually sweet, brown food preparation of roasted and ground cacao seeds that is made in the form of a liquid, paste, or in a block, or used as a flavoring ingredient in other foods."
+    },
+    {
+        "id": 38,
+        "name": "Dairy Milk Reclose",
+        "originalprice": 12.3,
+        "promotionprice": 10.4,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Fchocolates%2Fcadbury_dairy_milk_crispello.jpg?alt=media&token=80a0eb95-8fa6-4af9-bb82-62a9ff7a5d80",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Snack", "Chocolates"],
+        "desc": "Chocolate is a usually sweet, brown food preparation of roasted and ground cacao seeds that is made in the form of a liquid, paste, or in a block, or used as a flavoring ingredient in other foods."
+    },
+    {
+        "id": 39,
+        "name": "Dairy Milk Crispello",
+        "originalprice": 12.3,
+        "promotionprice": 10.4,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Fchocolates%2Fcadbury_dairy_milk_crispello.jpg?alt=media&token=80a0eb95-8fa6-4af9-bb82-62a9ff7a5d80",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Snack", "Chocolates"],
+        "desc": "Chocolate is a usually sweet, brown food preparation of roasted and ground cacao seeds that is made in the form of a liquid, paste, or in a block, or used as a flavoring ingredient in other foods."
+    },
+    {
+        "id": 40,
+        "name": "Cadbury Zip",
+        "originalprice": 12.3,
+        "promotionprice": 10.4,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Fchocolates%2Fcadbury_zip.jpg?alt=media&token=bcea060a-07d9-4ba7-96c4-bb228ab54730",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Snack", "Chocolates"],
+        "desc": "Chocolate is a usually sweet, brown food preparation of roasted and ground cacao seeds that is made in the form of a liquid, paste, or in a block, or used as a flavoring ingredient in other foods."
+    },
+    {
+        "id": 41,
+        "name": "Nestle Kitkat",
+        "originalprice": 12.3,
+        "promotionprice": 10.4,
+        "image": "https://firebasestorage.googleapis.com/v0/b/ecomweb-b7f55.appspot.com/o/products%2Fchocolates%2Fnestle_kitkat.jpg?alt=media&token=c1b0f198-b262-489f-9c49-aa4bd0c366c9",
+        "unit": "kg",
+        "thumbnailImg": ["images.apple1", "images.apple2", "images.apple3"],
+        "categories": ["Snack", "Chocolates"],
+        "desc": "Chocolate is a usually sweet, brown food preparation of roasted and ground cacao seeds that is made in the form of a liquid, paste, or in a block, or used as a flavoring ingredient in other foods."
+    }
+]

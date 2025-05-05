@@ -1,0 +1,17 @@
+.home__container {
+    --sidebar-width: 400px;
+    min-height: 500px;
+}
+@media screen and (min-width: 1280px) {
+    .home__sidebar {
+    }
+    .product__container {
+    }
+}
+
+@media screen and (min-width: 1568px) {
+    .home__sidebar {
+    }
+    .product__container {
+    }
+}

@@ -1,0 +1,35 @@
+.subMenuItem__container {
+    width: 250px;
+    font-size: 18px;
+    text-align: center;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 12px;
+
+    button:hover {
+        background-color: var(--main-color);
+        color: white;
+    }
+
+    button:first-child {
+        border-radius: 8px 8px 0 0;
+    }
+
+    button:last-child {
+        border-radius: 0px 0px 8px 8px;
+        border-top: 1px solid rgb(209 213 219);
+    }
+
+    a:hover {
+        background-color: var(--main-color);
+        color: white;
+    }
+
+    a:first-child {
+        border-radius: 8px 8px 0 0;
+    }
+
+    a:last-child {
+        border-radius: 0px 0px 8px 8px;
+        border-top: 1px solid rgb(209 213 219);
+    }
+}

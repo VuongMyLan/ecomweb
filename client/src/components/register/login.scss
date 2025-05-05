@@ -1,0 +1,26 @@
+.login__container {
+    .ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+        color: var(--main-color);
+    }
+    .ant-tabs .ant-tabs-ink-bar {
+        background: var(--main-color);
+    }
+}
+
+.register__form {
+    .register__button {
+        &:hover {
+            border: none;
+            background-color: rgb(1, 147, 118) !important;
+            color: white !important;
+        }
+    }
+}
+
+@media screen and (min-width: 576px) {
+    .login__container {
+        .logo__img {
+            width: 50%;
+        }
+    }
+}

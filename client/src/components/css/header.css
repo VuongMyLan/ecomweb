@@ -1,0 +1,16 @@
+.header__container {
+  height: 60px;
+}
+
+.header__container .header__left {
+  height: 100%;
+}
+
+.header__container .header__logo {
+  height: 100%;
+}
+
+.header__container .header__logo .logo__img {
+  height: 100%;
+}
+/*# sourceMappingURL=header.css.map */
